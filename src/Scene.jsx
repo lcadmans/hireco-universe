@@ -94,6 +94,7 @@ export function Scene(props) {
 
 		if (orbitControlsRef) {
 			orbitControlsRef.current.autoRotate = true
+			orbitControlsRef.current.autoRotateSpeed = -2
 			console.log(orbitControlsRef)
 		}
 	})
