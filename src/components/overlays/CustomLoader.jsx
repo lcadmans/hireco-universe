@@ -15,16 +15,16 @@ export function CustomLoader() {
 	// const [started, setStarted] = useState(false)
 	const [unmount, setUnmount] = useState(false)
 
-	useEffect(() => {
-		console.log('started')
-		console.log(started)
-		// setUnmount(true)
-		if (started == true) {
-			// setTimeout(() => {
-			// 	console.log('unmount')
-			// }, 2500)
-		}
-	}, [started])
+	// useEffect(() => {
+	// 	console.log('started')
+	// 	console.log(started)
+	// 	// setUnmount(true)
+	// 	if (started == true) {
+	// 		// setTimeout(() => {
+	// 		// 	console.log('unmount')
+	// 		// }, 2500)
+	// 	}
+	// }, [started])
 
 	useEffect(() => {
 		if (progress == 100) {

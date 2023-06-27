@@ -40,7 +40,7 @@ export function processData(data) {
 		// let parsedDescription = documentToReactComponents(description, options)
 		// console.log(parsedDescription)
 
-		console.log(fields)
+		// console.log(fields)
 		let descriptionArr = []
 		if (!description) {
 			descriptionArr = ['']

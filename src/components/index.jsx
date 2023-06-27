@@ -14,3 +14,5 @@ export { Arrow } from './Models'
 export { CustomLoader } from './overlays'
 
 export { Tile, ContentHolder } from './content'
+
+export { QRPanel } from './QRPanel'

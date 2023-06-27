@@ -226,14 +226,14 @@ function SectionCopy(props) {
 						anchorX='left'
 						anchorY='top'
 						position={[0, [0, 0, 0, 0, 0.5, 0][index], 0]}
-						fontSize={[1.5, 1.25, 0.75, 0.4, 0.2, 0.2][index]}
+						fontSize={[2, 1.5, 1, 0.5, 0.2, 0.2][index]}
 						outlineOffsetX={0}
 						outlineOffsetY={0}
 						outlineBlur={0.1}
 						outlineOpacity={0.25}
 						opacity={2}
 						color={0xffffff}
-						maxWidth={[50, 50, 30, 15, 4, 4][index]}
+						maxWidth={[50, 50, 25, 15, 4, 4][index]}
 					>
 						{description}
 					</Text>
