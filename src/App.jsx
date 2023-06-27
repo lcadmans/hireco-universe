@@ -86,7 +86,6 @@ function App() {
 	const activeRing = appState(state => state.activeRing)
 	const fetchData = appState(state => state.fetchData, shallow)
 	const activeTile = appState(state => state.activeTile)
-	const getUniverseStores = appState(state => state.getUniverseStores)
 	const setFetchData = appState(state => state.setFetchData)
 	// const maxDistance = appState(state => state.maxDistance, shallow)
 	const boundsMargin = appState(state => state.boundsMargin, shallow)
@@ -106,6 +105,7 @@ function App() {
 	const setCurrentView = appState(state => state.setCurrentView)
 	const setFocusElementRef = appState(state => state.setFocusElementRef)
 	const setBrandVideo = appState(state => state.setBrandVideo)
+	const flyThrough = appState(state => state.flyThrough)
 	// const setMaxDistance = appState(state => state.setMaxDistance)
 
 	const masterGroup = useRef()
@@ -167,7 +167,7 @@ function App() {
 	const [remaining, setRemaining] = useState(0)
 
 	useEffect(() => {
-		if (state == 'Idle') {
+		if (state == 'Idle' && !flyThrough) {
 			setCurrentView('idle')
 			setActiveRing('none')
 			setActiveTile(null)
@@ -302,6 +302,7 @@ function App() {
 									maxDistance={365}
 									ref={orbitControlsRef}
 									enablePan={false}
+									autoRotate={flyThrough}
 									// onChange={e => getCameraInformation(e)}
 									// onStart={() => console.log('start')}
 									// onEnd={e => getCameraInformation(e)}

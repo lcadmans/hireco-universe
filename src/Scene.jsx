@@ -22,6 +22,7 @@ export function Scene(props) {
 	const started = appState(state => state.started)
 	const setStarted = appState(state => state.setStarted)
 	const sectionPositions = appState(state => state.sectionPositions)
+	const flyThrough = appState(state => state.flyThrough)
 	// console.log('getUniverseStores')
 	// console.log(getUniverseStores())
 
@@ -100,17 +101,24 @@ export function Scene(props) {
 			camera.updateProjectionMatrix()
 		}
 
-		if (orbitControlsRef) {
-			// orbitControlsRef.current.autoRotate = true
-			// orbitControlsRef.current.autoRotateSpeed = -2
-			// switch (activeRing) {
-			//   case 'ring_6':
-			//     orbitControlsRef.current.maxDistance = 90
-			//     break;
-			//   case 'ring_5':
-			//     orbitControlsRef.current.maxDistance = 80
-			// }
-			// console.log(orbitControlsRef)
+		if (orbitControlsRef && flyThrough) {
+			orbitControlsRef.current.autoRotate = true
+
+			if (currentView == 'main') {
+				orbitControlsRef.current.autoRotateSpeed = -2
+			} else if (activeRing) {
+				console.log(activeRing)
+				switch (activeRing) {
+					case 'ring_6':
+						orbitControlsRef.current.autoRotateSpeed = 2
+						break
+					case 'ring_2':
+						orbitControlsRef.current.autoRotateSpeed = -2
+						break
+					// 		default:
+					// 			orbitControlsRef.current.autoRotateSpeed = 2
+				}
+			}
 		}
 	})
 
