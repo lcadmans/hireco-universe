@@ -30,7 +30,7 @@ export function VideoOverlay() {
 			<div className=' absolute z-50  h-screen w-screen'>
 				<div className={`flex ${!brandVideo ? 'justify-start pl-24' : 'items-center justify-center'} h-full w-full items-center `}>
 					<BackButton />
-					<ReactPlayer url={'./images/' + activeVideo} playing className='relative z-20 w-[50%]' width={'50%'} height={'auto'} controls={true} loop={true} ref={playerRef} />
+					<ReactPlayer url={'./images/' + activeVideo} playing allowfullscreen className='relative z-20 w-[50%]' width={'50%'} height={'auto'} controls={true} loop={true} ref={playerRef} />
 					{error}
 					{/* <video class='relative z-20 w-[70vw]' autoplay muted controls>
 						<source src={'./images/' + activeVideo} type='video/mp4' />
