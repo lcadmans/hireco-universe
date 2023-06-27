@@ -203,7 +203,7 @@ function SectionCopy(props) {
 						color={0xffffff}
 						maxWidth={[50, 50, 25, 15, 4, 4][index]}
 					>
-						{/* {description} */}
+						{description}
 					</Text>
 				</group>
 			</animated.mesh>
@@ -327,7 +327,7 @@ function TextSection(props) {
 									{/* <Text font={'./fonts/Eveleth Clean Thin.otf'} anchorX='center' anchorY='middle' position={position} fontSize={0} outlineOffsetX={0} outlineOffsetY={0} outlineBlur={25} color={0xffffff} opacity={2}>
 										<meshBasicMaterial attach='material' color={0x000000} transparent opacity={0} />
 									</Text> */}
-									<Text font={'./fonts/Eveleth Clean Regular.otf'} anchorX='center' anchorY='middle' position={position} fontSize={[6, 5.5, 5, 4, 3, 15][index]} outlineOffsetX={0} outlineOffsetY={0} outlineBlur={5} outlineOpacity={0.25} opacity={2} ref={textContentRef} color={0xffffff}>
+									<Text font={'./fonts/Eveleth Clean Regular.otf'} anchorX='center' anchorY='middle' position={position} fontSize={[6, 5.5, 5, 4, 3, 15][index]} outlineOffsetX={0} outlineOffsetY={0} outlineBlur={2} outlineOpacity={1} ref={textContentRef} color={0xffffff}>
 										{copy[nodeName].title}
 									</Text>
 								</group>

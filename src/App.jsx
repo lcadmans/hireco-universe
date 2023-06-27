@@ -251,7 +251,7 @@ function App() {
 					// 	setActiveRing('none')
 					// }}
 				>
-					<PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1.15)}></PerformanceMonitor>
+					<PerformanceMonitor onIncline={() => setDpr(1.75)} onDecline={() => setDpr(1.2)}></PerformanceMonitor>
 					<AdaptiveDpr pixelated />
 					<AdaptiveEvents />
 					{/* <Perf /> */}
