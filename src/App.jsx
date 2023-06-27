@@ -138,7 +138,7 @@ function IdleMessage() {
 					setIdleMessage(false)
 				}}
 			>
-				go idle
+				{`go idle >`}
 			</p>
 		</div>
 	)
