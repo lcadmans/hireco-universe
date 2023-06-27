@@ -17,60 +17,6 @@ let sectPositions = {
 	ring_3: new THREE.Vector3(-4.358933448791504, 0, 14.004501342773438)
 }
 
-const activeFiles = [
-	'600x400_RIGID_BRANDED.jpg',
-	'0c5758c9-node_pladis_logo_RGB_red_72ppi_Transparent_In_association1_Medium.png',
-	'1.jpg',
-	'9fc4eb_4fe0f0e738e14b6bae0b5a7a81aff851.webp',
-	'600x400_BOX_BRANDED.jpg',
-	'600x400_BRANDED MAN TRUCK.jpg',
-	'600x400_CURTAINSIDER_BRANDED.jpg',
-	'600x400_DOUBLE DECK_BRANDED.jpg',
-	'600x400_FLATBED.jpg',
-	'600x400_REFRIGERATED.jpg',
-	'600x400_SKEL.jpg',
-	'600x400_VANS DROP N GO.jpg',
-	'600x400_VANS PEUGEOT UTILITYjpg.jpg',
-	'600x400_VANS VW CHILLER.jpg',
-	'600x400_VANS VW PANEL.jpg',
-	'600x400_VANS WELFARE.jpg',
-	'1200px-B_Q_company_logo.svg.png',
-	'187699729.jpg.gallery.jpg',
-	'Dennison-Trailers_1000x500.webp',
-	'DJI_20230213_120755_942.JPG',
-	'DJI_20230213_120925_582.jpg',
-	'DJI_20230213_120927_900.JPG',
-	'don-bur-logo-svg.svg',
-	'download.png',
-	'dummy.mp4',
-	'EXPERTS_CHRIS HEATHER.jpg',
-	'experts_dummy.jpeg',
-	'EXPERTS_DUMMY.jpg',
-	'EXPERTS_JAMES SMITH.jpg',
-	'EXPERTS_JASON CHIPCHASE.jpg',
-	'EXPERTS_KAREN McCHESNEY.jpg',
-	'EXPERTS_PAUL JEFFERY.jpg',
-	'EXPERTS_SCOTT MCMINIGLE.jpg',
-	'EXPERTS_TIM GIBSON.jpg',
-	'EXPERTS_TIM MCARTHY.jpg',
-	'Flatbed-2 copy.jpg',
-	'GA_Logo_Menu.png',
-	'Krone_logo.webp',
-	'Lawrence-David-Logo.jpeg',
-	'logo-share.png',
-	'MAN_logo_logotype_emblem_symbol.jpeg',
-	'Mercedes-Logo.svg.png',
-	'MULTIPLE VANS.MP4',
-	'Play.png',
-	'Premier_Foods_logo.svg',
-	'Sainsbury’s-Logo.png',
-	'SDC-Trailers-Logo-RGB.jpeg',
-	'Tesco_Logo.svg.png',
-	'Volvo_Trucks___Bus_logo.jpeg',
-	'woodland-logo-blue.png',
-	'XPO_logistics.5c659fd72fa20.jpeg'
-]
-
 export const appState = create(
 	devtools(set => ({
 		// States
@@ -102,7 +48,6 @@ export const appState = create(
 		activeTileRef: null,
 		focusElementRef: null,
 		updateBounds: null,
-		activeFiles: activeFiles,
 		maxDistance: 700,
 		// boundsMargin: 3,
 		boundsMargin: 3,
@@ -115,6 +60,7 @@ export const appState = create(
 		textures: null,
 		sectionPositions: sectPositions,
 		idleMessage: false,
+		brandVideo: true,
 
 		// Set States
 		setActiveSlide: index => set(state => ({ activeSlide: index })),
@@ -141,7 +87,6 @@ export const appState = create(
 		setActiveTileRef: input => set(state => ({ activeTileRef: input })),
 		setFocusElementRef: input => set(state => ({ focusElementRef: input })),
 		setUpdateBounds: input => set(state => ({ updateBounds: input })),
-		// setActiveFiles: input => set(state => ({ activeFiles: input })),
 		setMaxDistance: input => set(state => ({ maxDistance: input })),
 		setBoundsMargin: input => set(state => ({ boundsMargin: input })),
 		setActiveVideo: input => set(state => ({ activeVideo: input })),
@@ -151,6 +96,7 @@ export const appState = create(
 		setUpdateCamera: input => set(state => ({ updateCamera: input })),
 		setTextures: input => set(state => ({ textures: input })),
 		setIdleMessage: input => set(state => ({ idleMessage: input })),
+		setBrandVideo: input => set(state => ({ brandVideo: input })),
 
 		// Content
 		ringNames: ringNames,

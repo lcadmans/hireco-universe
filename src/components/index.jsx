@@ -16,3 +16,5 @@ export { CustomLoader } from './overlays'
 export { Tile, ContentHolder } from './content'
 
 export { QRPanel } from './QRPanel'
+export { BackButton } from './BackButton'
+export { VideoOverlay } from './VideoOverlay'

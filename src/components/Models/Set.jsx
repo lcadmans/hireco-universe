@@ -117,22 +117,9 @@ export function SetsModel(props) {
 					if (currentView != 'page') {
 						setActiveRing(nodeName)
 					}
-					// e.stopPropagation()
 				}}
-				// onPointerOver={() => {
-				// 	handleMouseOver()
-				// 	document.body.style.cursor = 'pointer'
-				// }}
-				// onPointerOut={() => {
-				// 	// setScale(fetchScale(index))
-				// 	handleMouseOut()
-				// 	document.body.style.cursor = 'default'
-				// }}
 				ref={group}
 				visible={currentView != 'page' || (currentView == 'page' && activeRing != nodeName)}
-				// scale={scale}
-				// onClick={() => setActive(!active)}
-				// onPointerLeave={(document.body.style.cursor = 'cursor')}
 				onPointerEnter={() => {}}
 				position={[0, 0.75, 0]}
 			>
@@ -150,7 +137,7 @@ export function SetsModel(props) {
 
 function fetchScale(index) {
 	let scale = 0.4
-	index = index + 4
+	index = index + 1
 	scale = scale / index
 
 	return scale

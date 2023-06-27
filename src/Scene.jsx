@@ -132,7 +132,7 @@ export function Scene(props) {
 				orbitControlsRef.current.enabled = true
 			}, 1750)
 
-			console.log(activeRing)
+			// console.log(activeRing)
 
 			let [endPositionX, endPositionY, endPositionZ] = [cameraPositionsStore.focus[activeRing].position.x, cameraPositionsStore.focus[activeRing].position.y, cameraPositionsStore.focus[activeRing].position.z]
 			let { x: endTargetX, y: endTargetY, z: endTargetZ } = sectionPositions[activeRing]

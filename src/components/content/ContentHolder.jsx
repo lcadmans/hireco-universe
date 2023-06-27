@@ -190,7 +190,7 @@ function SectionTileHolder(props) {
 		// const shifterPlanePosition = { ring_2: 3, ring_3: 0.3 * 2, ring_4: 0.3 * 5, ring_5: 0.3 * 7.5, ring_6: 0.3 * 10 }
 		const activeScales = { ring_2: 5, ring_3: 3, ring_4: 2.5, ring_5: 1.5, ring_6: 2 }
 
-		const openingTextSizes = { ring_2: 0.1, ring_3: 0.3, ring_4: 0.7, ring_5: 0.9, ring_6: 2 }
+		const openingTextSizes = { ring_2: 0.075, ring_3: 0.3, ring_4: 0.7, ring_5: 0.9, ring_6: 2 }
 		// const openingTextSizes = { ring_2: 0.05, ring_3: 3, ring_4: 2.5, ring_5: 1.5, ring_6: 2 }
 
 		// const plane = new THREE.PlaneGeometry(sizes[contentSection][0] * aspectRatio, sizes[contentSection][1])
@@ -257,7 +257,7 @@ function randomIntFromInterval(ringName, axis) {
 	// console.log(randomAmount)
 	// console.log(min)
 
-	const randomAmounts = { ring_2: 2, ring_3: 6, ring_4: 8, ring_5: 13, ring_6: 25 }
+	const randomAmounts = { ring_2: 2, ring_3: 5, ring_4: 8, ring_5: 13, ring_6: 25 }
 	const randomAmount = randomAmounts[ringName]
 	let min = -Math.abs(randomAmount)
 	let max = randomAmount

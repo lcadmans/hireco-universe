@@ -12,37 +12,6 @@ import { a } from '@react-spring/three'
 
 import * as THREE from 'three'
 
-function UniverseGradientBackup(props) {
-	const { nodes, materials } = useGLTF('./models/universe/hireco_3DScene_v28.glb')
-	const getUniverseStores = appState(state => state.getUniverseStores)
-	const { colorValues } = getUniverseStores()
-	return (
-		<group {...props} dispose={null}>
-			<mesh geometry={nodes.ring_6.geometry} material={materials['RING.006']}></mesh>
-			<mesh geometry={nodes.ring_3.geometry} material={materials['RINGS.001']}></mesh>
-			<mesh geometry={nodes.ring_2.geometry} material={materials.RINGS}></mesh>
-			<mesh geometry={nodes.ring_5.geometry} material={materials['RING.006']}></mesh>
-			<mesh geometry={nodes.ring_2_tube.geometry} material={materials['H ORANGE.002']}>
-				<meshBasicMaterial color={colorValues[2]} emissiveIntensity={3} transparent={true} alpha={true} toneMapped={false}></meshBasicMaterial>
-			</mesh>
-			<mesh geometry={nodes.ring_3_tube.geometry} material={materials['H ORANGE.002']}>
-				<meshBasicMaterial color={colorValues[2]} toneMapped={false}></meshBasicMaterial>
-			</mesh>
-			<mesh geometry={nodes.ring_4_tube.geometry} material={materials['H ORANGE.002']}>
-				<meshBasicMaterial color={colorValues[2]} toneMapped={false}></meshBasicMaterial>
-			</mesh>
-			<mesh geometry={nodes.ring_5_tube.geometry} material={materials['H ORANGE.002']}>
-				<meshBasicMaterial color={colorValues[2]} toneMapped={false}></meshBasicMaterial>
-			</mesh>
-			<mesh geometry={nodes.ring_6_tube.geometry} material={materials['H ORANGE.002']}>
-				<meshBasicMaterial color={colorValues[2]} toneMapped={false}></meshBasicMaterial>
-				{/* <meshBasicMaterial color={colorValues[2]} emissiveIntensity={3} transparent={true} opacity={2} alpha={true} toneMapped={false}></meshBasicMaterial> */}
-			</mesh>
-			<mesh geometry={nodes.ring_4.geometry} material={materials['RINGS.003']}></mesh>
-		</group>
-	)
-}
-
 export function HirecoUniverse(props) {
 	const testRef = useRef()
 
@@ -56,7 +25,6 @@ export function HirecoUniverse(props) {
 	return (
 		<>
 			<UniverseContent />
-			{/* <UniverseGradientBackup /> */}
 			<UniverseGradient />
 
 			<HirecoLogo />
@@ -122,7 +90,7 @@ const UniverseContent = props => {
 
 						return (
 							<>
-								<SectionCopy ring={ringName} index={index} />
+								<SectionCopy ring={ringName} index={index} key={'sectionCopy_' + index} />
 								<animated.mesh
 									//  position-y={translateYHidden}
 									key={'flatGroupMesh' + ringName}
