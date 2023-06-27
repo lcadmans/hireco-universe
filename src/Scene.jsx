@@ -142,7 +142,7 @@ export function Scene(props) {
 
 			let [endPositionX, endPositionY, endPositionZ] = [cameraPositionsStore.focus[activeRing].position.x, cameraPositionsStore.focus[activeRing].position.y, cameraPositionsStore.focus[activeRing].position.z]
 			let { x: endTargetX, y: endTargetY, z: endTargetZ } = sectionPositions[activeRing]
-			let yTargetRingScalar = { ring_6: 20, ring_5: 1, ring_4: 5, ring_3: 4, ring_2: 3 }[activeRing]
+			let yTargetRingScalar = { ring_6: 20, ring_5: 10, ring_4: 5, ring_3: 4, ring_2: 3 }[activeRing]
 			endTargetY = endTargetY + yTargetRingScalar
 			bounds.to({ position: [endPositionX, endPositionY, endPositionZ], target: [endTargetX, endTargetY, endTargetZ] })
 		}
