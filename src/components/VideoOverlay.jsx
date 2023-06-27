@@ -10,16 +10,16 @@ export function VideoOverlay() {
 	const setActiveVideo = appState(state => state.setActiveVideo)
 
 	const activeVideo = appState(state => state.activeVideo)
-	const setActiveRing = appState(state => state.setActiveRing)
-	const activeRing = appState(state => state.activeRing)
+
 	const setFocusElementRef = appState(state => state.setFocusElementRef)
 	const updateCamera = appState(state => state.updateCamera, shallow)
 	const setQrPanel = appState(state => state.setQrPanel)
 	const brandVideo = appState(state => state.brandVideo, shallow)
 	const setBrandVideo = appState(state => state.setBrandVideo)
+	const setIdleMessage = appState(state => state.setIdleMessage)
 	const playerRef = useRef()
 
-	const [error, setError] = useState('')
+	// const [error, setError] = useState('')
 	// useEffect(() => {
 	// 	if (!playerRef.current) return
 	// 	playerRef.current.playing = true
@@ -30,8 +30,19 @@ export function VideoOverlay() {
 			<div className=' absolute z-50  h-screen w-screen'>
 				<div className={`flex ${!brandVideo ? 'justify-start pl-24' : 'items-center justify-center'} h-full w-full items-center `}>
 					<BackButton />
-					<ReactPlayer url={'./images/' + activeVideo} playing allowfullscreen className='relative z-20 w-[50%]' width={'50%'} height={'auto'} controls={true} loop={true} ref={playerRef} />
-					{error}
+					<ReactPlayer
+						url={'./images/' + activeVideo}
+						playing
+						allowfullscreen
+						className='relative z-20 w-[50%]'
+						width={'50%'}
+						height={'auto'}
+						controls={true}
+						loop={true}
+						ref={playerRef}
+						// muted={true}
+					/>
+
 					{/* <video class='relative z-20 w-[70vw]' autoplay muted controls>
 						<source src={'./images/' + activeVideo} type='video/mp4' />
 						Your browser does not support the video tag.
@@ -46,6 +57,7 @@ export function VideoOverlay() {
 							setFocusElementRef(null)
 							setQrPanel(null)
 							setBrandVideo(false)
+							setIdleMessage(false)
 							updateCamera()
 						}}
 					></div>

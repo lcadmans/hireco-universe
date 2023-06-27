@@ -1,17 +1,16 @@
-import { AdaptiveDpr, AdaptiveEvents, Bounds, Effects, Environment, OrbitControls, PerformanceMonitor, PerspectiveCamera, useProgress } from '@react-three/drei'
-import { Canvas, extend, useLoader, useFrame } from '@react-three/fiber'
-import { useQuery } from '@tanstack/react-query'
+import { AdaptiveDpr, AdaptiveEvents, Bounds, Effects, Environment, OrbitControls, PerspectiveCamera, useProgress } from '@react-three/drei'
+import { Canvas, extend, useLoader } from '@react-three/fiber'
 import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react'
-import { useFullScreenHandle } from 'react-full-screen'
+import { useIdleTimer } from 'react-idle-timer'
 import * as THREE from 'three'
 import { UnrealBloomPass } from 'three-stdlib'
 import { shallow } from 'zustand/shallow'
 import { Scene } from './Scene'
-import { CustomLoader, QRPanel, BackButton, VideoOverlay } from './components'
-import { cameraPositionsStore, content } from './data'
+import { BackButton, CustomLoader, QRPanel, VideoOverlay } from './components'
+import { content } from './data'
 import { appState } from './store'
 
-import ReactPlayer from 'react-player'
+import { Perf } from 'r3f-perf'
 import { processData } from './functions'
 
 extend({ UnrealBloomPass })
@@ -46,11 +45,6 @@ function HirecoWhite() {
 	return (
 		<>
 			<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 70.514 70.598'>
-				{/* <defs>
-					<clipPath id='clip-path'>
-						<rect id='Rectangle_3' data-name='Rectangle 3' width='70.514' height='70.598' transform='translate(0 0)' fill='none' />
-					</clipPath>
-				</defs> */}
 				<g id='Group_5' data-name='Group 5' transform='translate(0 0)'>
 					<g id='Group_4' data-name='Group 4' clip-path='url(#clip-path)'>
 						<path
@@ -94,7 +88,7 @@ function App() {
 	const activeTile = appState(state => state.activeTile)
 	const getUniverseStores = appState(state => state.getUniverseStores)
 	const setFetchData = appState(state => state.setFetchData)
-	const maxDistance = appState(state => state.maxDistance, shallow)
+	// const maxDistance = appState(state => state.maxDistance, shallow)
 	const boundsMargin = appState(state => state.boundsMargin, shallow)
 	const activeVideo = appState(state => state.activeVideo, shallow)
 	const setLoaded = appState(state => state.setLoaded)
@@ -102,8 +96,17 @@ function App() {
 	const boundsDamping = appState(state => state.boundsDamping, shallow)
 	const setTextures = appState(state => state.setTextures)
 	const idleMessage = appState(state => state.idleMessage, shallow)
+	const currentView = appState(state => state.currentView, shallow)
 	// const fetchData = appState(state => state.fetchData)
 	const setActiveVideo = appState(state => state.setActiveVideo)
+
+	const setActiveRing = appState(state => state.setActiveRing)
+	const setActiveTile = appState(state => state.setActiveTile)
+	const setQrPanel = appState(state => state.setQrPanel)
+	const setCurrentView = appState(state => state.setCurrentView)
+	const setFocusElementRef = appState(state => state.setFocusElementRef)
+	const setBrandVideo = appState(state => state.setBrandVideo)
+	// const setMaxDistance = appState(state => state.setMaxDistance)
 
 	const masterGroup = useRef()
 	const cameraRef = useRef()
@@ -142,48 +145,7 @@ function App() {
 	useEffect(() => {
 		if (!sectionTextures) return
 		setTextures(sectionTextures)
-		// setTextures([])
 	}, [sectionTextures])
-
-	function getTextures(props) {
-		const { fetchData } = props
-		const data = fetchData
-		if (!data) return null
-
-		let imageTextures = []
-		let finalImageUrls = []
-		data.forEach(a => {
-			// console.log(a)
-			let image, imageString, imageSrc
-			imageSrc = a.image
-
-			// console.log(imageSrc)
-
-			// imageString = `./images/hireco_dummy.jpeg`
-			if (!imageSrc) imageString = `./images/hireco_dummy.jpeg`
-			else imageString = `./images/${imageSrc}`
-
-			let adjustedPath = imageString
-
-			if (adjustedPath.includes('dummy.mp4') == true) {
-				// videoUrl = image
-				adjustedPath = './images/hireco_dummy.jpeg'
-			}
-
-			if (adjustedPath.includes('.png')) {
-				adjustedPath.replace('.png', '.jpg')
-			}
-
-			if (adjustedPath.includes('.mp4') && adjustedPath.includes('dummy.mp4') == false) {
-				adjustedPath = './images/video screens/' + imageSrc.replace('.mp4', '.jpg')
-			}
-			finalImageUrls.push(adjustedPath)
-		})
-
-		const loadedTextures = ([...finalImageUrls] = useLoader(THREE.TextureLoader, [...finalImageUrls]))
-
-		return loadedTextures
-	}
 
 	useEffect(() => {
 		if (!orbitControlsRef || !orbitControlsRef.current) return
@@ -198,9 +160,65 @@ function App() {
 		console.log(cameraInformation)
 	}
 
-	const [fullScreen, setFullScreen] = useState(false)
-	const handle = useFullScreenHandle()
 	const [dpr, setDpr] = useState(1.5)
+
+	const [state, setState] = useState('Active')
+	const [count, setCount] = useState(0)
+	const [remaining, setRemaining] = useState(0)
+
+	useEffect(() => {
+		if (state == 'Idle') {
+			setCurrentView('idle')
+			setActiveRing('none')
+			setActiveTile(null)
+			setFocusElementRef(null)
+			setActiveVideo(null)
+			setQrPanel(null)
+			setBrandVideo(false)
+			// setMaxDistance(365)
+		}
+	}, [state])
+
+	const onIdle = () => {
+		setState('Idle')
+	}
+
+	const onActive = () => {
+		setState('Active')
+	}
+
+	const onAction = () => {
+		setCount(count + 1)
+	}
+
+	const [timeoutAmount, setTimeoutAmount] = useState(10_000)
+
+	useEffect(() => {
+		if (activeVideo) return setTimeoutAmount(50_000)
+		if (activeTile) return setTimeoutAmount(40_000)
+		if (currentView == 'page') return setTimeoutAmount(30_000)
+		if (currentView == 'main') return setTimeoutAmount(15_000)
+	}, [currentView, activeVideo, activeTile])
+
+	const { getRemainingTime } = useIdleTimer({
+		onIdle,
+		onActive,
+		onAction,
+		timeout: timeoutAmount,
+		throttle: 500
+	})
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setRemaining(Math.ceil(getRemainingTime() / 1000))
+		}, 500)
+
+		return () => {
+			clearInterval(interval)
+		}
+	})
+
+	// console.log(remaining)
 
 	return (
 		<>
@@ -231,8 +249,6 @@ function App() {
 				{activeVideo ? <VideoOverlay /> : <></>}
 				<WelcomeToUniverse />
 
-				{/* <Loader /> */}
-
 				{/* <ConsoleLogger /> */}
 				<CustomLoader />
 				{qrPanel ? <QRPanel /> : <></>}
@@ -253,49 +269,49 @@ function App() {
 						// 	setActiveRing('none')
 						// }}
 					>
-						{/* <PerformanceMonitor onIncline={() => setDpr(1.75)} onDecline={() => setDpr(1.2)}></PerformanceMonitor> */}
-						<AdaptiveDpr pixelated />
-						<AdaptiveEvents />
-						{/* <Perf /> */}
+						<Suspense fallback={null}>
+							{/* <PerformanceMonitor onIncline={() => setDpr(1.75)} onDecline={() => setDpr(1.2)}></PerformanceMonitor> */}
+							<AdaptiveDpr pixelated />
+							<AdaptiveEvents />
+							{/* <Perf /> */}
 
-						<group ref={masterGroup}>
-							<ambientLight intensity={2} />
-							<PerspectiveCamera
-								ref={cameraRef}
-								// manual={false}
-								// aspect={aspects[0] / aspects[1]}
-								aspect={window.innerWidth / window.innerHeight}
-								fov={60}
-								// position={Object.values(cameraPositions[0].position)}
-								// position={Object.values(cameraPositionsStore.focus[activeRing].position)}
-								// position={[0, 0, 0]}
-								position={[-1, -1, -1]}
-								// target={[5, 5, 5]}
-								near={0.1}
-								// far={600/}
-								makeDefault
-							/>
-							<OrbitControls
-								// camera={cameraRef.current}
-								makeDefault
-								minPolarAngle={0.5}
-								maxPolarAngle={Math.PI / 2}
-								// maxAzimuthAngle={Math.PI / 5}
-								minDistance={5}
-								maxDistance={maxDistance}
-								ref={orbitControlsRef}
-								enablePan={false}
-								// onChange={e => getCameraInformation(e)}
-								// onStart={() => console.log('start')}
-								// onEnd={e => getCameraInformation(e)}
-							/>
-							<Suspense fallback={null}>
-								{/* <Environment files='./environment/nedula.hdr' background={true} blur={0.05} rotation={5} /> */}
+							<group ref={masterGroup}>
+								{/* <ambientLight intensity={2} /> */}
+								<PerspectiveCamera
+									ref={cameraRef}
+									// manual={false}
+									// aspect={aspects[0] / aspects[1]}
+									aspect={window.innerWidth / window.innerHeight}
+									fov={60}
+									// position={Object.values(cameraPositions[0].position)}
+									// position={Object.values(cameraPositionsStore.focus[activeRing].position)}
+									// position={[0, 0, 0]}
+									position={[-1, -1, -1]}
+									// target={[5, 5, 5]}
+									near={0.1}
+									// far={600/}
+									makeDefault
+								/>
+								<OrbitControls
+									// camera={cameraRef.current}
+									makeDefault
+									minPolarAngle={0.5}
+									maxPolarAngle={Math.PI / 2}
+									// maxAzimuthAngle={Math.PI / 5}
+									minDistance={5}
+									maxDistance={365}
+									ref={orbitControlsRef}
+									enablePan={false}
+									// onChange={e => getCameraInformation(e)}
+									// onStart={() => console.log('start')}
+									// onEnd={e => getCameraInformation(e)}
+								/>
+
 								<Environment files='./environment/nedula v6.hdr' background={true} />
 
 								{/* <color attach='background' args={['#191920']} opacity={1} /> */}
 								{/* <fog attach='fog' args={['#000000', 200, 1500]} /> */}
-								{/* <hemisphereLight color='white' groundColor='#ff0f00' position={[-7, 25, 13]} intensity={1} /> */}
+								<hemisphereLight color='white' groundColor='#ff0f00' position={[-7, 25, 13]} intensity={1} />
 
 								<Bounds damping={boundsDamping} margin={boundsMargin}>
 									<Scene cameraRef={cameraRef} orbitControlsRef={orbitControlsRef}></Scene>
@@ -314,7 +330,7 @@ function App() {
 								</EffectComposer> */}
 								<Effects disableGamma>
 									{/* threshhold has to be 1, so nothing at all gets bloom by default */}
-									<unrealBloomPass threshold={1.5} strength={0.5} radius={0.3} />
+									<unrealBloomPass threshold={1.4} strength={0.4} radius={0.25} />
 									{/* <vignetteShader /> */}
 									{/* <Vignette eskil={false} offset={0.5} darkness={1} blendFunction={'add'} /> */}
 								</Effects>
@@ -327,8 +343,8 @@ function App() {
 									// fade
 									speed={5}
 								/> */}
-							</Suspense>
-						</group>
+							</group>
+						</Suspense>
 					</Canvas>
 				)}
 				{/* </FullScreen> */}
@@ -371,17 +387,12 @@ function WelcomeToUniverse() {
 
 function ContentOverlay(props) {
 	const setActiveRing = appState(state => state.setActiveRing)
-	const setCurrentView = appState(state => state.setCurrentView)
 	const setActiveTile = appState(state => state.setActiveTile)
 
 	const activeRing = appState(state => state.activeRing, shallow)
 	const activeTile = appState(state => state.activeTile, shallow)
 	const currentView = appState(state => state.currentView, shallow)
-	const updateBounds = appState(state => state.updateBounds, shallow)
-	const activeVideo = appState(state => state.activeVideo, shallow)
-	const focusElementRef = appState(state => state.focusElementRef, shallow)
 	const setActiveVideo = appState(state => state.setActiveVideo, shallow)
-	const setFocusElementRef = appState(state => state.setFocusElementRef)
 	const ringNames = appState(state => state.ringNames)
 	const setQrPanel = appState(state => state.setQrPanel)
 
@@ -485,12 +496,6 @@ function ContentOverlay(props) {
 									</p>
 								)
 							})}
-							{/* <p class={'font-bold uppercase '}> {`> Sourcing`}</p>
-							<p class={'font-bold uppercase '}> {`> Finance`}</p>
-							<p class={'font-bold uppercase '}> {`> Fleet Maintenance`}</p>
-							<p class={'font-bold uppercase '}> {`> Smart Tech`}</p>
-							<p class={'font-bold uppercase '}> {`> Truck Park`}</p>
-							<p class={'font-bold uppercase '}> {`> Green Creds`}</p> */}
 						</div>
 						<div className=''></div>
 					</>
@@ -502,63 +507,38 @@ function ContentOverlay(props) {
 	)
 }
 
-function PlayButton() {
-	const activeRing = appState(state => state.activeRing)
-	const ringNames = appState(state => state.ringNames)
-	const fetchData = appState(state => state.fetchData)
-	const activeTile = appState(state => state.activeTile)
-	const activeVideo = appState(state => state.activeVideo)
-	const setActiveVideo = appState(state => state.setActiveVideo)
-	const ringName = ringNames[activeRing]
-	function playVideo() {
-		// const { videoUrl, setVideoActive } = props
-		console.log('play video')
-		console.log(videoUrl)
-		setActiveVideo(videoUrl)
-	}
-	if (!fetchData) return <></>
-	let currentSectionCopy
-	currentSectionCopy = fetchData.filter(item => item.id == activeTile)[0]
-	if (!currentSectionCopy) return <></>
+function getTextures(props) {
+	const { fetchData } = props
+	const data = fetchData
+	if (!data) return null
 
-	// console.log(currentSectionCopy)
-	// if (!currentSectionCopy) return <></>
-	let video, videoUrl
-	video = currentSectionCopy.video || false
-	videoUrl = currentSectionCopy.image || false
+	let imageTextures = []
+	let finalImageUrls = []
+	data.forEach(a => {
+		// console.log(a)
+		let image, imageString, imageSrc
+		imageSrc = a.image
+		if (!imageSrc) imageString = `./images/hireco_dummy.jpeg`
+		else imageString = `./images/${imageSrc}`
 
-	if (!video) return <></>
+		let adjustedPath = imageString
 
-	return (
-		<>
-			<div className={`playbutton pointer-events-none absolute top-0 left-0 z-50 flex h-screen w-screen scale-[3] items-center justify-center opacity-100  transition-opacity delay-[3000ms] ease-in-out `}>
-				<div className='svg pointer-events-auto absolute animate-[ping_3s_ease-in-out_infinite] shadow-[5_50px_60px_-15px_rgba(0,0,0,1)]' onClick={() => playVideo()}>
-					<PlaySvg />
-				</div>
-				<div className='svg absolute scale-125 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]'>
-					<PlaySvg />
-				</div>
-				{/* <h2 className={' pl-5 text-[2em]'}>Play Video</h2> */}
-			</div>
-		</>
-	)
-}
+		if (adjustedPath.includes('dummy.mp4') == true) {
+			// videoUrl = image
+			adjustedPath = './images/hireco_dummy.jpeg'
+		}
 
-function PlaySvg() {
-	return (
-		<div className='relative z-50'>
-			<svg xmlns='http://www.w3.org/2000/svg' width='34.081' height='38.953' viewBox='0 0 34.081 38.953'>
-				<path id='Icon_awesome-play' data-name='Icon awesome-play' d='M32.287,16.334,5.508.5A3.631,3.631,0,0,0,0,3.644V35.3a3.648,3.648,0,0,0,5.508,3.142L32.287,22.617a3.648,3.648,0,0,0,0-6.284Z' transform='translate(0 -0.002)' fill='#fff' />
-			</svg>
-		</div>
-	)
-}
+		if (adjustedPath.includes('.png')) {
+			adjustedPath.replace('.png', '.jpg')
+		}
 
-function subscribeDimensions(callback) {
-	window.addEventListener('resize', callback)
-	return () => window.removeEventListener('resize', callback)
-}
+		if (adjustedPath.includes('.mp4') && adjustedPath.includes('dummy.mp4') == false) {
+			adjustedPath = './images/video screens/' + imageSrc.replace('.mp4', '.jpg')
+		}
+		finalImageUrls.push(adjustedPath)
+	})
 
-function getSnapshot() {
-	return { width: window.innerWidth, height: window.innerHeight }
+	const loadedTextures = ([...finalImageUrls] = useLoader(THREE.TextureLoader, [...finalImageUrls]))
+
+	return loadedTextures
 }

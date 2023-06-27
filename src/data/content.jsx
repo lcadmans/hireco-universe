@@ -18,6 +18,220 @@ export const content = {
 						id: 'ndcfmypd0yep'
 					}
 				},
+				id: '5KiiHufHKoDYuUUQVt51R',
+				type: 'Entry',
+				createdAt: '2023-06-26T18:38:32.496Z',
+				updatedAt: '2023-06-27T11:30:48.067Z',
+				environment: {
+					sys: {
+						id: 'master',
+						type: 'Link',
+						linkType: 'Environment'
+					}
+				},
+				revision: 11,
+				contentType: {
+					sys: {
+						type: 'Link',
+						linkType: 'ContentType',
+						id: 'support'
+					}
+				},
+				locale: 'en-US'
+			},
+			fields: {
+				title: 'TYRES',
+				subtitle: 'QUALITY & EFFICIENCY ASSURED',
+				description: {
+					data: {},
+					content: [
+						{
+							data: {},
+							content: [
+								{
+									data: {},
+									marks: [],
+									value: '*',
+									nodeType: 'text'
+								}
+							],
+							nodeType: 'paragraph'
+						}
+					],
+					nodeType: 'document'
+				},
+				image: 'FLEET MAINTENANCE Tyres.mp4',
+				video: true,
+				lightbox: true,
+				cta: {
+					nodeType: 'document',
+					data: {},
+					content: [
+						{
+							nodeType: 'paragraph',
+							data: {},
+							content: [
+								{
+									nodeType: 'text',
+									value: '',
+									marks: [],
+									data: {}
+								},
+								{
+									nodeType: 'hyperlink',
+									data: {
+										uri: 'tim.attwood@hireco.co.uk'
+									},
+									content: [
+										{
+											nodeType: 'text',
+											value: 'Click to arrange a chat with Tim',
+											marks: [],
+											data: {}
+										}
+									]
+								},
+								{
+									nodeType: 'text',
+									value: '',
+									marks: [],
+									data: {}
+								}
+							]
+						}
+					]
+				}
+			}
+		},
+		{
+			metadata: {
+				tags: []
+			},
+			sys: {
+				space: {
+					sys: {
+						type: 'Link',
+						linkType: 'Space',
+						id: 'ndcfmypd0yep'
+					}
+				},
+				id: '3gJMVlfiRvdFbuay2xzeXm',
+				type: 'Entry',
+				createdAt: '2023-06-05T20:58:10.995Z',
+				updatedAt: '2023-06-27T11:03:48.128Z',
+				environment: {
+					sys: {
+						id: 'master',
+						type: 'Link',
+						linkType: 'Environment'
+					}
+				},
+				revision: 10,
+				contentType: {
+					sys: {
+						type: 'Link',
+						linkType: 'ContentType',
+						id: 'source'
+					}
+				},
+				locale: 'en-US'
+			},
+			fields: {
+				title: 'USED ASSETS',
+				subtitle: 'Your trusted asset partner',
+				description: {
+					data: {},
+					content: [
+						{
+							data: {},
+							content: [
+								{
+									data: {},
+									marks: [],
+									value:
+										'A total transport solution means that we deliver value and peace of mind across your fleet, working alongside you - however you need to build your fleet. When it comes to used assets, Hireco has more owned fleet assets for sale than anyone in the market. We know and trust the assets we sell because we have maintained them throughout their life with Hireco. \n\nEvery trailer, truck or van has been through health checks before sale so you can buy with confidence. We have an extensive range of superb, used assets available to you, quality and assurance are guaranteed. We can also buy your old assets to make way for the new, should the need arise.\n\n',
+									nodeType: 'text'
+								}
+							],
+							nodeType: 'paragraph'
+						}
+					],
+					nodeType: 'document'
+				},
+				image: 'h-used-gen.mp4',
+				video: true,
+				cta: {
+					data: {},
+					content: [
+						{
+							data: {},
+							content: [
+								{
+									data: {},
+									marks: [],
+									value: '',
+									nodeType: 'text'
+								},
+								{
+									data: {
+										uri: 'paul.jackson@hirecotrailersales.co.uk'
+									},
+									content: [
+										{
+											data: {},
+											marks: [],
+											value: 'Click to discuss with our expert',
+											nodeType: 'text'
+										}
+									],
+									nodeType: 'hyperlink'
+								},
+								{
+									data: {},
+									marks: [],
+									value: '\n\n',
+									nodeType: 'text'
+								},
+								{
+									data: {
+										uri: 'https://hireco.co.uk/source/used-assets'
+									},
+									content: [
+										{
+											data: {},
+											marks: [],
+											value: 'Click to view our available used assets',
+											nodeType: 'text'
+										}
+									],
+									nodeType: 'hyperlink'
+								},
+								{
+									data: {},
+									marks: [],
+									value: '',
+									nodeType: 'text'
+								}
+							],
+							nodeType: 'paragraph'
+						}
+					],
+					nodeType: 'document'
+				}
+			}
+		},
+		{
+			metadata: {
+				tags: []
+			},
+			sys: {
+				space: {
+					sys: {
+						type: 'Link',
+						linkType: 'Space',
+						id: 'ndcfmypd0yep'
+					}
+				},
 				id: '50j8Kse7YuKht8c4YISbN4',
 				type: 'Entry',
 				createdAt: '2023-06-05T21:01:23.950Z',
@@ -271,85 +485,6 @@ export const content = {
 					],
 					nodeType: 'document'
 				}
-			}
-		},
-		{
-			metadata: {
-				tags: []
-			},
-			sys: {
-				space: {
-					sys: {
-						type: 'Link',
-						linkType: 'Space',
-						id: 'ndcfmypd0yep'
-					}
-				},
-				id: '5KiiHufHKoDYuUUQVt51R',
-				type: 'Entry',
-				createdAt: '2023-06-26T18:38:32.496Z',
-				updatedAt: '2023-06-26T22:34:29.591Z',
-				environment: {
-					sys: {
-						id: 'master',
-						type: 'Link',
-						linkType: 'Environment'
-					}
-				},
-				revision: 9,
-				contentType: {
-					sys: {
-						type: 'Link',
-						linkType: 'ContentType',
-						id: 'support'
-					}
-				},
-				locale: 'en-US'
-			},
-			fields: {
-				title: 'TYRES',
-				subtitle: 'QUALITY & EFFICIENCY ASSURED',
-				fullDescription: {
-					data: {},
-					content: [
-						{
-							data: {},
-							content: [
-								{
-									data: {},
-									marks: [],
-									value: '',
-									nodeType: 'text'
-								},
-								{
-									data: {
-										uri: 'tim.attwood@hireco.co.uk'
-									},
-									content: [
-										{
-											data: {},
-											marks: [],
-											value: 'Click to arrange a chat with Tim',
-											nodeType: 'text'
-										}
-									],
-									nodeType: 'hyperlink'
-								},
-								{
-									data: {},
-									marks: [],
-									value: '',
-									nodeType: 'text'
-								}
-							],
-							nodeType: 'paragraph'
-						}
-					],
-					nodeType: 'document'
-				},
-				image: 'FLEET MAINTENANCE Tyres.mp4',
-				video: true,
-				lightbox: true
 			}
 		},
 		{
@@ -3146,122 +3281,6 @@ export const content = {
 									nodeType: 'text',
 									value:
 										"We want to create an environment for everyone that is better, cleaner and more sustainable.\n\nWe started with the Truck Park, a best-in-class Park that gives drivers exactly what they deserve- superb quality amenities and flexible, secure parking. \n\nPlus we're constantly innovating new ways of reducing our carbon footprint and leading the way when it comes to the industry embracing alternative fuel options.\n\nWe've also been awarded a 'Silver EcoVadis' status. Putting us in the top 10% of companies in the UK for green credentials – we’re gunning for gold.",
-									marks: [],
-									data: {}
-								}
-							]
-						}
-					]
-				}
-			}
-		},
-		{
-			metadata: {
-				tags: []
-			},
-			sys: {
-				space: {
-					sys: {
-						type: 'Link',
-						linkType: 'Space',
-						id: 'ndcfmypd0yep'
-					}
-				},
-				id: '3gJMVlfiRvdFbuay2xzeXm',
-				type: 'Entry',
-				createdAt: '2023-06-05T20:58:10.995Z',
-				updatedAt: '2023-06-26T14:04:08.099Z',
-				environment: {
-					sys: {
-						id: 'master',
-						type: 'Link',
-						linkType: 'Environment'
-					}
-				},
-				revision: 9,
-				contentType: {
-					sys: {
-						type: 'Link',
-						linkType: 'ContentType',
-						id: 'source'
-					}
-				},
-				locale: 'en-US'
-			},
-			fields: {
-				title: 'USED ASSETS',
-				subtitle: 'Your trusted asset partner',
-				description: {
-					data: {},
-					content: [
-						{
-							data: {},
-							content: [
-								{
-									data: {},
-									marks: [],
-									value:
-										'A total transport solution means that we deliver value and peace of mind across your fleet, working alongside you - however you need to build your fleet. When it comes to used assets, Hireco has more owned fleet assets for sale than anyone in the market. We know and trust the assets we sell because we have maintained them throughout their life with Hireco. \n\nEvery trailer, truck or van has been through health checks before sale so you can buy with confidence. We have an extensive range of superb, used assets available to you, quality and assurance are guaranteed. We can also buy your old assets to make way for the new, should the need arise.\n\n',
-									nodeType: 'text'
-								}
-							],
-							nodeType: 'paragraph'
-						}
-					],
-					nodeType: 'document'
-				},
-				image: 'h-used-gen.mp4',
-				cta: {
-					nodeType: 'document',
-					data: {},
-					content: [
-						{
-							nodeType: 'paragraph',
-							data: {},
-							content: [
-								{
-									nodeType: 'text',
-									value: '',
-									marks: [],
-									data: {}
-								},
-								{
-									nodeType: 'hyperlink',
-									data: {
-										uri: 'paul.jackson@hirecotrailersales.co.uk'
-									},
-									content: [
-										{
-											nodeType: 'text',
-											value: 'Click to discuss with our expert',
-											marks: [],
-											data: {}
-										}
-									]
-								},
-								{
-									nodeType: 'text',
-									value: '\n\n',
-									marks: [],
-									data: {}
-								},
-								{
-									nodeType: 'hyperlink',
-									data: {
-										uri: 'https://hireco.co.uk/source/used-assets'
-									},
-									content: [
-										{
-											nodeType: 'text',
-											value: 'Click to view our available used assets',
-											marks: [],
-											data: {}
-										}
-									]
-								},
-								{
-									nodeType: 'text',
-									value: '',
 									marks: [],
 									data: {}
 								}

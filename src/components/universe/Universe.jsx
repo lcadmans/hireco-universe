@@ -55,14 +55,14 @@ const UniverseContent = props => {
 		depthTest: false
 	}
 
-	useFrame(state => {
-		// const t = state.clock.getElapsedTime()
-		// masterGroup.current.rotation.set(Math.cos(t / 8) / 8, Math.sin(t / 8) / 16, -0.2 - Math.sin(t / 3) / 30)
-		// universeMeshGroup.current.position.y = ((1 + Math.sin(t / 1.5)) / 80) * multiplier
-		// universeMeshGroup.current.position.y = ((1 + Math.sin(t / 1.5)) / 80) * multiplier
-		// samplerRefGroup.current.scale.y = 1 + ((1 + Math.sin(t / 1.5)) / 80) * multiplier
-		// ringsGroup.current.rotation.y += rotationAmount
-	})
+	// useFrame(state => {
+	// const t = state.clock.getElapsedTime()
+	// masterGroup.current.rotation.set(Math.cos(t / 8) / 8, Math.sin(t / 8) / 16, -0.2 - Math.sin(t / 3) / 30)
+	// universeMeshGroup.current.position.y = ((1 + Math.sin(t / 1.5)) / 80) * multiplier
+	// universeMeshGroup.current.position.y = ((1 + Math.sin(t / 1.5)) / 80) * multiplier
+	// samplerRefGroup.current.scale.y = 1 + ((1 + Math.sin(t / 1.5)) / 80) * multiplier
+	// ringsGroup.current.rotation.y += rotationAmount
+	// })
 
 	return (
 		<>
@@ -121,11 +121,11 @@ function SectionCopy(props) {
 
 	const groupRef = useRef()
 
-	useFrame(({ camera }) => {
-		// if (!textContentRef.current) return
-		// textContentRef.current.quaternion.copy(camera.quaternion)
-		// groupRef.current.lookAt(camera.position)
-	})
+	// useFrame(({ camera }) => {
+	// if (!textContentRef.current) return
+	// textContentRef.current.quaternion.copy(camera.quaternion)
+	// groupRef.current.lookAt(camera.position)
+	// })
 
 	const ringName = ringNames[ring]
 	const sectionCopy = fetchData.filter(item => item.section == 'Sectioncopy').filter(item => item.ring == ringName)
@@ -259,8 +259,6 @@ function TextSection(props) {
 	}
 
 	useFrame(({ camera }) => {
-		// if (!textContentRef.current) return
-		// textContentRef.current.quaternion.copy(camera.quaternion)
 		textContentRef.current.lookAt(camera.position)
 	})
 
@@ -299,74 +297,69 @@ function TextSection(props) {
 
 	return (
 		<>
-			<animated.mesh position-y={iconElevationActive} visible={visible}>
-				<group
-					ref={textGroupRef}
-					onPointerOver={() => {
-						handleMouseOver()
-						document.body.style.cursor = 'pointer'
-					}}
-					onPointerOut={() => {
-						// setScale(fetchScale(index))
-						handleMouseOut()
-						document.body.style.cursor = 'default'
-					}}
-					// onClick={() => {
-					// 	setActiveRing(nodeName)
-					// 	setCurrentView('focus')
-					// }}
-					position-y={0.02}
-				>
-					{/* <animated.mesh position-y={groupPositionY}> */}
-					<group visible={(currentView != 'page' && currentView != 'focus' && currentView != 'idle') || (currentView == 'focus' && activeRing == nodeName)}>
-						<animated.mesh scale={textScalar}>
-							<animated.mesh scale={initialTextScale}>
-								{/* <Line points={[[10, -10, 100]]} color='white' lineWidth={10} segments dashed={false} vertexColors={[[0, 0, 0]]} /> */}
-								<Line points={linePoints} color={'white'} lineWidth={1} dashed={true} />
-								<group position={[0, [40, 50, 35, 30, 20][index], 0]}>
-									{/* <Text font={'./fonts/Eveleth Clean Thin.otf'} anchorX='center' anchorY='middle' position={position} fontSize={0} outlineOffsetX={0} outlineOffsetY={0} outlineBlur={25} color={0xffffff} opacity={2}>
+			{/* <animated.mesh position-y={iconElevationActive} visible={visible}> */}
+			<group
+				ref={textGroupRef}
+				// onPointerOver={() => {
+				// 	handleMouseOver()
+				// 	document.body.style.cursor = 'pointer'
+				// }}
+				// onPointerOut={() => {
+				// 	handleMouseOut()
+				// 	document.body.style.cursor = 'default'
+				// }}
+				position-y={0.02}
+			>
+				{/* <animated.mesh position-y={groupPositionY}> */}
+				<group visible={(currentView != 'page' && currentView != 'focus' && currentView != 'idle') || (currentView == 'focus' && activeRing == nodeName)}>
+					{/* <animated.mesh scale={textScalar}> */}
+					{/* <animated.mesh scale={initialTextScale}> */}
+					{/* <Line points={[[10, -10, 100]]} color='white' lineWidth={10} segments dashed={false} vertexColors={[[0, 0, 0]]} /> */}
+					<Line points={linePoints} color={'white'} lineWidth={1} dashed={true} />
+					<group position={[0, [40, 50, 35, 30, 20][index], 0]}>
+						{/* <Text font={'./fonts/Eveleth Clean Thin.otf'} anchorX='center' anchorY='middle' position={position} fontSize={0} outlineOffsetX={0} outlineOffsetY={0} outlineBlur={25} color={0xffffff} opacity={2}>
 										<meshBasicMaterial attach='material' color={0x000000} transparent opacity={0} />
 									</Text> */}
-									<Text font={'./fonts/Eveleth Clean Regular.otf'} anchorX='center' anchorY='middle' position={position} fontSize={[6, 5.5, 5, 4, 3, 15][index]} outlineOffsetX={0} outlineOffsetY={0} outlineBlur={2} outlineOpacity={1} ref={textContentRef} color={0xffffff}>
-										{copy[nodeName].title}
-									</Text>
-								</group>
-							</animated.mesh>
-						</animated.mesh>
+						<Text font={'./fonts/Eveleth Clean Regular.otf'} anchorX='center' anchorY='middle' position={position} fontSize={[6, 5.5, 5, 4, 3, 15][index]} outlineOffsetX={0} outlineOffsetY={0} outlineBlur={2} outlineOpacity={1} ref={textContentRef} color={0xffffff}>
+							{copy[nodeName].title}
+						</Text>
 					</group>
-
-					<group
-					// visible={(currentView == 'focus' && activeRing == nodeName) || (currentView == 'page' && activeRing == nodeName) || currentView == 'main'}
-					>
-						<animated.mesh
-							scale={iconScale}
-							position={position}
-							onClick={() => {
-								if (!activeTile) {
-									setActiveRing(nodeName)
-									setCurrentView('page')
-									setActiveTile(null)
-								}
-								// setCurrentView('focus')
-							}}
-						>
-							<group>
-								{/* <animated.mesh scale={iconPageScaler}> */}
-								{/* <animated.mesh scale={iconScalar}> */}
-								<animated.mesh scale={iconScalarPage}>
-									<SetsModel position={position} index={index} nodeName={nodeName} />
-								</animated.mesh>
-								{/* </animated.mesh> */}
-								{/* </animated.mesh> */}
-							</group>
-						</animated.mesh>
-					</group>
-					{/* <group visible={currentView == 'page' && activeRing == nodeName} position={position}>
-						<ContentHolder />
-					</group> */}
+					{/* </animated.mesh> */}
 					{/* </animated.mesh> */}
 				</group>
-			</animated.mesh>
+
+				<group
+				// visible={(currentView == 'focus' && activeRing == nodeName) || (currentView == 'page' && activeRing == nodeName) || currentView == 'main'}
+				>
+					<animated.mesh
+						scale={iconScale}
+						position={position}
+						onClick={() => {
+							if (!activeTile) {
+								setActiveRing(nodeName)
+								setCurrentView('page')
+								setActiveTile(null)
+							}
+							// setCurrentView('focus')
+						}}
+					>
+						<group>
+							{/* <animated.mesh scale={iconPageScaler}> */}
+							{/* <animated.mesh scale={iconScalar}> */}
+							<animated.mesh scale={iconScalarPage}>
+								<SetsModel position={position} index={index} nodeName={nodeName} />
+							</animated.mesh>
+							{/* </animated.mesh> */}
+							{/* </animated.mesh> */}
+						</group>
+					</animated.mesh>
+				</group>
+				{/* <group visible={currentView == 'page' && activeRing == nodeName} position={position}>
+						<ContentHolder />
+					</group> */}
+				{/* </animated.mesh> */}
+			</group>
+			{/* </animated.mesh> */}
 		</>
 	)
 }
@@ -422,7 +415,7 @@ function SampledNode(props) {
 	return (
 		<>
 			{/* <meshBasicMaterial {...materials['RING.006']} opacity={1} /> */}
-			<mesh castShadow receiveShadow geometry={node.geometry} ref={meshRef}>
+			<mesh geometry={node.geometry} ref={meshRef}>
 				<meshBasicMaterial attach='material' color='black' opacity={0} transparent alpha={true} depthTest={false} />
 			</mesh>
 
@@ -501,7 +494,4 @@ function UniverseGradient(props) {
 }
 
 useGLTF.preload('./models/universe/universe_gradient_v8.glb')
-// useGLTF.preload('./models/universe/hireco_3DScene_ringR-v1-forGLTF.glb')
-// useGLTF.preload('./models/universe/hireco_3DScene_ringRAndO-v1-forGLTF.glb')
-// useGLTF.preload('./models/hireco_3DScene_sectLocation-v3.glb')
 useGLTF.preload('./models/universe/hireco_3DScene_v28.glb')

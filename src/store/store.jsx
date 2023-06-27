@@ -1,9 +1,6 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
-import { useGLTF } from '@react-three/drei'
-
-import { cmsData } from '../data'
 import * as THREE from 'three'
 
 const ringNames = { ring_2: 'Experts', ring_3: 'Source', ring_4: 'Support', ring_5: 'Technology', ring_6: 'Welfare' }
@@ -48,7 +45,7 @@ export const appState = create(
 		activeTileRef: null,
 		focusElementRef: null,
 		updateBounds: null,
-		maxDistance: 700,
+		// maxDistance: 700,
 		// boundsMargin: 3,
 		boundsMargin: 3,
 		activeVideo: null,
@@ -87,7 +84,7 @@ export const appState = create(
 		setActiveTileRef: input => set(state => ({ activeTileRef: input })),
 		setFocusElementRef: input => set(state => ({ focusElementRef: input })),
 		setUpdateBounds: input => set(state => ({ updateBounds: input })),
-		setMaxDistance: input => set(state => ({ maxDistance: input })),
+		// setMaxDistance: input => set(state => ({ maxDistance: input })),
 		setBoundsMargin: input => set(state => ({ boundsMargin: input })),
 		setActiveVideo: input => set(state => ({ activeVideo: input })),
 		setLoaded: input => set(state => ({ loaded: input })),
@@ -188,37 +185,6 @@ const getUniverseStores = () => {
 	const sectionPositions = sectPositions
 
 	return { colorValues, universeMultipliers, sectionPositions }
-}
-
-// useGLTF.preload('./models/hireco_3DScene_sectLocation-v3.glb')
-
-function processData(data) {
-	let arr = []
-
-	data.items.forEach(a => {
-		// console.log(a)
-		let row = {}
-		const { fields, metadata, sys } = a
-		// console.log(fields)
-		let { title, subtitle, description, image, otherImages } = fields
-		let section = sys.contentType.sys.id
-		description = description.content[0]
-		if (description.content[0].value) description = description.content[0].value
-		else description = ''
-
-		// console.log(description)
-		// console.log(section)
-
-		row['title'] = title
-		row['subtitle'] = subtitle
-		row['description'] = description
-		row['image'] = image
-		row['section'] = toTitleCase(section)
-		row['otherImages'] = otherImages
-
-		arr.push(row)
-	})
-	return arr
 }
 
 function toTitleCase(str) {

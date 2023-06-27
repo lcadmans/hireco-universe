@@ -1,10 +1,5 @@
-import * as THREE from 'three'
-import { Object3D } from 'three'
-import { shallow } from 'zustand/shallow'
-import React, { useRef, Suspense, useEffect, useState } from 'react'
-import { Canvas, extend, useFrame, useLoader } from '@react-three/fiber'
-import { shaderMaterial, Plane, Html, Line } from '@react-three/drei'
-import { animated, a, update, useSpring, config } from '@react-spring/three'
+import { a } from '@react-spring/three'
+import React from 'react'
 
 import { appState } from '../../store'
 

@@ -23,9 +23,9 @@ export function HirecoLogo(props) {
 			<Sphere scale={0.5}>
 				<meshStandardMaterial color='black' transparent opacity={0.1} side={THREE.BackSide} />
 			</Sphere>
-			<mesh castShadow receiveShadow geometry={nodes.hirecoH_2.geometry} material={materials['Hireco - HCircle- 1.003']} />
-			<mesh castShadow receiveShadow geometry={nodes.ring_1.geometry} material={materials['Hireco - HCircle- 1.001']} />
-			<mesh castShadow receiveShadow geometry={nodes.hirecoH_1.geometry} material={materials['Hireco - HCircle- 1.002']} />
+			<mesh geometry={nodes.hirecoH_2.geometry} material={materials['Hireco - HCircle- 1.003']} />
+			<mesh geometry={nodes.ring_1.geometry} material={materials['Hireco - HCircle- 1.001']} />
+			<mesh geometry={nodes.hirecoH_1.geometry} material={materials['Hireco - HCircle- 1.002']} />
 		</group>
 	)
 }

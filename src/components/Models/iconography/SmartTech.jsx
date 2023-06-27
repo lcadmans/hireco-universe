@@ -25,16 +25,16 @@ export function SmartTechSection(props) {
 		<group ref={group} {...props} dispose={null}>
 			<group name='Scene'>
 				<group name='wifiSpin'>
-					<mesh name='wifi_1' castShadow receiveShadow geometry={nodes.wifi_1.geometry} material={materials['Hireco - Wifi .005']} scale={0.75} />
-					<mesh name='wifi_2' castShadow receiveShadow geometry={nodes.wifi_2.geometry} material={materials['Hireco - Wifi .004']} scale={0.78} />
-					<mesh name='wifi_3' castShadow receiveShadow geometry={nodes.wifi_3.geometry} material={materials['Hireco - Wifi .006']} scale={0.74} />
-					<mesh name='wifi_4' castShadow receiveShadow geometry={nodes.wifi_4.geometry} material={materials['Hireco - Wifi .003']} scale={0.78} />
-					<mesh name='wifi_5' castShadow receiveShadow geometry={nodes.wifi_5.geometry} material={materials['Hireco - Wifi .002']} scale={0.75} />
-					<mesh name='wifi_6' castShadow receiveShadow geometry={nodes.wifi_6.geometry} material={materials['Hireco - Wifi .001']} scale={0.74} />
+					<mesh name='wifi_1' geometry={nodes.wifi_1.geometry} material={materials['Hireco - Wifi .005']} scale={0.75} />
+					<mesh name='wifi_2' geometry={nodes.wifi_2.geometry} material={materials['Hireco - Wifi .004']} scale={0.78} />
+					<mesh name='wifi_3' geometry={nodes.wifi_3.geometry} material={materials['Hireco - Wifi .006']} scale={0.74} />
+					<mesh name='wifi_4' geometry={nodes.wifi_4.geometry} material={materials['Hireco - Wifi .003']} scale={0.78} />
+					<mesh name='wifi_5' geometry={nodes.wifi_5.geometry} material={materials['Hireco - Wifi .002']} scale={0.75} />
+					<mesh name='wifi_6' geometry={nodes.wifi_6.geometry} material={materials['Hireco - Wifi .001']} scale={0.74} />
 				</group>
 				<group name='codeCube' scale={0}>
-					<mesh name='codeCube_1' castShadow receiveShadow geometry={nodes.codeCube_1.geometry} material={materials['Hireco - codeCube .001']} rotation={[Math.PI / 2, 0, 0]} scale={0.3} />
-					<mesh name='codeCube_2' castShadow receiveShadow geometry={nodes.codeCube_2.geometry} material={materials['Hireco - codeCube .002']} rotation={[Math.PI / 2, 0, 0]} scale={0.29} />
+					<mesh name='codeCube_1' geometry={nodes.codeCube_1.geometry} material={materials['Hireco - codeCube .001']} rotation={[Math.PI / 2, 0, 0]} scale={0.3} />
+					<mesh name='codeCube_2' geometry={nodes.codeCube_2.geometry} material={materials['Hireco - codeCube .002']} rotation={[Math.PI / 2, 0, 0]} scale={0.29} />
 				</group>
 			</group>
 		</group>

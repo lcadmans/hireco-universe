@@ -17,9 +17,8 @@ export function Scene(props) {
 	const ringNames = appState(state => state.ringNames)
 	const setUpdateBounds = appState(state => state.setUpdateBounds)
 	const setUpdateCamera = appState(state => state.setUpdateCamera)
-	const getUniverseStores = appState(state => state.getUniverseStores)
-	const setMaxDistance = appState(state => state.setMaxDistance)
-	const maxDistance = appState(state => state.maxDistance, shallow)
+	// const setMaxDistance = appState(state => state.setMaxDistance)
+	// const maxDistance = appState(state => state.maxDistance, shallow)
 	const started = appState(state => state.started)
 	const setStarted = appState(state => state.setStarted)
 	const sectionPositions = appState(state => state.sectionPositions)
@@ -69,10 +68,19 @@ export function Scene(props) {
 
 	useFrame(state => {
 		const { camera } = state
-		const t = state.clock.getElapsedTime()
-		if (currentView == 'page' && maxDistance > 80) {
-			setMaxDistance(maxDistance - 5)
-		} else if (currentView == 'main' && maxDistance < 375) {
+		// const t = state.clock.getElapsedTime()
+		// if (currentView != 'page' && orbitControlsRef.current.maxDistance < 370) {
+		// 	if (orbitControlsRef.current.maxDistance < 150) orbitControlsRef.current.maxDistance = 150
+		// 	orbitControlsRef.current.maxDistance + 10
+		// }
+		if (currentView == 'page' && orbitControlsRef.current.maxDistance > 80) {
+			orbitControlsRef.current.maxDistance = orbitControlsRef.current.maxDistance - 5
+			// console.log(orbitControlsRef.current.maxDistance)
+			// setMaxDistance(maxDistance - 5)
+		} else if (currentView != 'page') {
+			if (orbitControlsRef.current.maxDistance < 200) orbitControlsRef.current.maxDistance = 200
+			if (orbitControlsRef.current.maxDistance < 365) orbitControlsRef.current.maxDistance = orbitControlsRef.current.maxDistance + 10
+			// console.log(orbitControlsRef.current.maxDistance)
 			// if (maxDistance < 200) setMaxDistance(150)
 			// setMaxDistance(maxDistance + 50)
 		}
@@ -81,12 +89,12 @@ export function Scene(props) {
 		// 	floatGroup.current.rotation.z -= 0.02
 		// }
 
-		if (currentView == 'page' && camera.fov < 100) {
-			camera.fov += 1.4
+		if (currentView == 'page' && camera.fov < 110) {
+			camera.fov += 1.75
 			camera.updateProjectionMatrix()
 		} else if (currentView == 'main' && camera.fov > 60) {
 			// console.log('return to base')
-			camera.fov = camera.fov -= 2
+			camera.fov = camera.fov -= 3
 			if (camera.fov < 60) camera.fov = 60
 
 			camera.updateProjectionMatrix()
@@ -95,6 +103,13 @@ export function Scene(props) {
 		if (orbitControlsRef) {
 			// orbitControlsRef.current.autoRotate = true
 			// orbitControlsRef.current.autoRotateSpeed = -2
+			// switch (activeRing) {
+			//   case 'ring_6':
+			//     orbitControlsRef.current.maxDistance = 90
+			//     break;
+			//   case 'ring_5':
+			//     orbitControlsRef.current.maxDistance = 80
+			// }
 			// console.log(orbitControlsRef)
 		}
 	})
@@ -116,13 +131,19 @@ export function Scene(props) {
 		// console.log('return')
 
 		if (currentView == 'main') {
-			setMaxDistance(375)
+			// setMaxDistance(375)
 			retrunCamera()
 			if (!started) {
 				// setTimeout(() => {
 				setStarted(true)
 				// }, 500)
 			}
+		}
+		if (currentView == 'idle') {
+			// setMaxDistance(375)
+			let [endPositionX, endPositionY, endPositionZ] = [cameraPositionsStore.idle.position.x, cameraPositionsStore.idle.position.y, cameraPositionsStore.idle.position.z]
+			let [endTargetX, endTargetY, endTargetZ] = [cameraPositionsStore.idle.target.x, cameraPositionsStore.idle.target.y, cameraPositionsStore.idle.target.z]
+			bounds.to({ position: [endPositionX, endPositionY, endPositionZ], target: [endTargetX, endTargetY, endTargetZ] })
 		}
 		if (currentView == 'page' && currentView != 'main') {
 			setTimeout(() => {

@@ -167,37 +167,6 @@ export const TilePlane = props => {
 	)
 }
 
-// function OtherImages(props) {
-// 	const { otherImagesArray, id, section } = props
-// 	const activeTile = appState(state => state.activeTile)
-// 	return (
-// 		<>
-// 			{otherImagesArray.map((image, index) => {
-// 				const imageTexture = useLoader(THREE.TextureLoader, `./images/${image}`)
-// 				console.log(image)
-// 				if (section != 'Source') return <></>
-// 				return <SmallTilePlane section={section} imageTexture={imageTexture} />
-// 			})}
-// 		</>
-// 	)
-// }
-
-function getDelayString(index) {
-	switch (index) {
-		case 0:
-			return 'delay-0'
-		case 1:
-			return 'delay-100'
-		case 2:
-			return 'delay-200'
-		case 3:
-			return 'delay-300'
-		case 4:
-			return 'delay-500'
-		default:
-			return 'delay-0'
-	}
-}
 function OtherImages(props) {
 	const { otherImagesArray } = props
 	const activeTile = appState(state => state.activeTile)

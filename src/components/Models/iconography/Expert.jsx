@@ -43,29 +43,29 @@ export function ExpertSection(props) {
 		<group ref={group} {...props} dispose={null}>
 			<group name='Scene'>
 				<group name='bulb'>
-					<mesh name='BULB_BOLT' castShadow receiveShadow geometry={nodes.BULB_BOLT.geometry} material={materials.EMMISION} position={[0, 0.11, 0]} scale={1.05}>
+					<mesh name='BULB_BOLT' geometry={nodes.BULB_BOLT.geometry} material={materials.EMMISION} position={[0, 0.11, 0]} scale={1.05}>
 						<meshBasicMaterial emissiveIntensity={2} toneMapped={false} position={[0, 1, 0]} color={bulbColor} ref={bulb}></meshBasicMaterial>
 					</mesh>
-					<mesh name='BULB' castShadow receiveShadow geometry={nodes.BULB.geometry} material={materials['Hireco - White Glass.001']} position={[0, 0.11, 0]} scale={[0.13, 0.03, 0.13]} />
-					<mesh name='BULB_BOTTOM' castShadow receiveShadow geometry={nodes.BULB_BOTTOM.geometry} material={materials['Hireco - White Metal - Light Bulb 2']} position={[0, 0.11, 0]} scale={[0.13, 0.04, 0.13]} />
-					<mesh name='BULB_MIDDLE' castShadow receiveShadow geometry={nodes.BULB_MIDDLE.geometry} material={materials['Hireco - White Metal - Light Bulb 1']} position={[0, 0.11, 0]} rotation={[-0.02, 0, 0]} scale={[0.13, 0.03, 0.13]} />
+					<mesh name='BULB' geometry={nodes.BULB.geometry} material={materials['Hireco - White Glass.001']} position={[0, 0.11, 0]} scale={[0.13, 0.03, 0.13]} />
+					<mesh name='BULB_BOTTOM' geometry={nodes.BULB_BOTTOM.geometry} material={materials['Hireco - White Metal - Light Bulb 2']} position={[0, 0.11, 0]} scale={[0.13, 0.04, 0.13]} />
+					<mesh name='BULB_MIDDLE' geometry={nodes.BULB_MIDDLE.geometry} material={materials['Hireco - White Metal - Light Bulb 1']} position={[0, 0.11, 0]} rotation={[-0.02, 0, 0]} scale={[0.13, 0.03, 0.13]} />
 				</group>
 				<group name='poundSymbol' scale={0}>
-					<mesh name='POUND_SYMBOL' castShadow receiveShadow geometry={nodes.POUND_SYMBOL.geometry} material={materials['Hireco-whiteMetal-poundSymbol-1']} position={[-0.01, -0.07, 0]} />
+					<mesh name='POUND_SYMBOL' geometry={nodes.POUND_SYMBOL.geometry} material={materials['Hireco-whiteMetal-poundSymbol-1']} position={[-0.01, -0.07, 0]} />
 				</group>
 				<group name='powerStation' scale={0}>
 					<group name='POWER_STATION' scale={1.18}>
-						<mesh name='BOLT001' castShadow receiveShadow geometry={nodes.BOLT001.geometry} material={materials.EMMISION} position={[0, 0.01, 0]} scale={0.34} />
-						<mesh name='POWER_BAR001' castShadow receiveShadow geometry={nodes.POWER_BAR001.geometry} material={materials.EMMISION} position={[0, -0.35, 0]} scale={0} />
-						<mesh name='POWER_BAR002' castShadow receiveShadow geometry={nodes.POWER_BAR002.geometry} material={materials.EMMISION} position={[0, -0.26, 0]} scale={0} />
-						<mesh name='POWER_BAR003' castShadow receiveShadow geometry={nodes.POWER_BAR003.geometry} material={materials.EMMISION} position={[0, -0.17, 0]} scale={0} />
-						<mesh name='PLUG_LEFT_' castShadow receiveShadow geometry={nodes.PLUG_LEFT_.geometry} material={materials['Hireco - White Metal - Power Station 2']} position={[0.16, 0.03, 0]} rotation={[Math.PI, 0, 0]} scale={-0.65} />
-						<mesh name='PLUG_RIGHT' castShadow receiveShadow geometry={nodes.PLUG_RIGHT.geometry} material={materials['Hireco - White Metal - Light Bulb 3']} position={[-0.17, 0.03, 0]} scale={0.65} />
-						<mesh name='POWERSTATION_STATION' castShadow receiveShadow geometry={nodes.POWERSTATION_STATION.geometry} material={materials['Hireco - White Metal - Power Station 1']} />
+						<mesh name='BOLT001' geometry={nodes.BOLT001.geometry} material={materials.EMMISION} position={[0, 0.01, 0]} scale={0.34} />
+						<mesh name='POWER_BAR001' geometry={nodes.POWER_BAR001.geometry} material={materials.EMMISION} position={[0, -0.35, 0]} scale={0} />
+						<mesh name='POWER_BAR002' geometry={nodes.POWER_BAR002.geometry} material={materials.EMMISION} position={[0, -0.26, 0]} scale={0} />
+						<mesh name='POWER_BAR003' geometry={nodes.POWER_BAR003.geometry} material={materials.EMMISION} position={[0, -0.17, 0]} scale={0} />
+						<mesh name='PLUG_LEFT_' geometry={nodes.PLUG_LEFT_.geometry} material={materials['Hireco - White Metal - Power Station 2']} position={[0.16, 0.03, 0]} rotation={[Math.PI, 0, 0]} scale={-0.65} />
+						<mesh name='PLUG_RIGHT' geometry={nodes.PLUG_RIGHT.geometry} material={materials['Hireco - White Metal - Light Bulb 3']} position={[-0.17, 0.03, 0]} scale={0.65} />
+						<mesh name='POWERSTATION_STATION' geometry={nodes.POWERSTATION_STATION.geometry} material={materials['Hireco - White Metal - Power Station 1']} />
 					</group>
-					<mesh name='PLUGS' castShadow receiveShadow geometry={nodes.PLUGS.geometry} material={materials['Hireco - White Metal - Light Bulb 4']} scale={1.18} />
+					<mesh name='PLUGS' geometry={nodes.PLUGS.geometry} material={materials['Hireco - White Metal - Light Bulb 4']} scale={1.18} />
 				</group>
-				<mesh name='invisibleSphere' castShadow receiveShadow geometry={nodes.invisibleSphere.geometry} material={materials.invisible} scale={0.6} />
+				<mesh name='invisibleSphere' geometry={nodes.invisibleSphere.geometry} material={materials.invisible} scale={0.6} />
 			</group>
 		</group>
 	)

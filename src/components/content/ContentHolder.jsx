@@ -38,9 +38,147 @@ export const ContentHolder = props => {
 	}, [fetchData])
 
 	const sections = ['Experts', 'Source', 'Support', 'Technology', 'Welfare']
-	const sizes = { ring_2: [0.75, 0.75], ring_3: [1 * 3, 1 * 3], ring_4: [1 * 5, 1 * 5], ring_5: [1 * 7.5, 1 * 7.5], ring_6: [1 * 15, 1 * 15], none: [0, 0] }
+	const sizes = { ring_2: [0.65, 0.65], ring_3: [1 * 3, 1 * 3], ring_4: [1 * 5, 1 * 5], ring_5: [1 * 7.5, 1 * 7.5], ring_6: [1 * 15, 1 * 15], none: [0, 0] }
 
 	// const contentSection = ringNameFromSection[section]
+
+	const fixedRingRandomPositionArray = {
+		ring_2: [
+			{
+				x: 2.7054152147862114,
+				y: 0.9421632868689489,
+				z: 0.7432219397579811
+			},
+			{
+				x: -2.8505716451185683,
+				y: 0.9635753474361075,
+				z: -1.160296347894592
+			},
+			{
+				x: -2.7432337917757246,
+				y: 0.13630915065819282,
+				z: -1.8515943292752954
+			},
+			{
+				x: -1.3474536882408472,
+				y: 0.9979683372565389,
+				z: -0.5213996008806303
+			},
+			{
+				x: 0.7772765527163763,
+				y: -1.4591955281848357,
+				z: -1.0538907397195927
+			},
+			{
+				x: 2.7373671415092433,
+				y: -0.4691844837110293,
+				z: 2.452825224744558
+			},
+			{
+				x: -0.08494046839180425,
+				y: 0.8401615285922146,
+				z: 0.5460286849862521
+			},
+			{
+				x: 0.19916625315307512,
+				y: 0.8131890238195565,
+				z: -1.986435379410148
+			},
+			{
+				x: -0.6408678262493444,
+				y: 0.6076525722298398,
+				z: -2.446100314503717
+			},
+			{
+				x: 2.7666731856743496,
+				y: 2.41264774468626,
+				z: 2.9828445457324353
+			},
+			{
+				x: 0.2311470026049014,
+				y: -0.6979777628473331,
+				z: -2.4083899922983965
+			}
+		],
+		ring_3: [
+			{
+				x: -5.338401579088266,
+				y: -1.9534258124300443,
+				z: 2.9034416947346102
+			},
+			{
+				x: 5.6297756328855595,
+				y: 6.929794339404239,
+				z: -0.7523492490780441
+			},
+			{
+				x: 1.7052329005669122,
+				y: 3.9016696646066986,
+				z: 5.613391103170439
+			},
+			{
+				x: -4.2203404057585665,
+				y: -1.9017368381931954,
+				z: -5.474226741946934
+			},
+			{
+				x: -3.0930535241792585,
+				y: 2.015131668267077,
+				z: -7.308283756149628
+			}
+		],
+		ring_4: [
+			{
+				x: 4.757749598825542,
+				y: 0.4530547865569119,
+				z: -8.982786751700143
+			},
+			{
+				x: -3.6129644589619945,
+				y: 3.0590106303093583,
+				z: -4.168453858968011
+			},
+			{
+				x: 5.823725768338635,
+				y: 8.471461252229687,
+				z: 3.0971075481846606
+			}
+		],
+		ring_5: [
+			{
+				x: -3.703375295075748,
+				y: 10.492122149518458,
+				z: -9.589739853482637
+			},
+			{
+				x: 8.618509964777406,
+				y: -5.066106579085771,
+				z: -8.911678759578198
+			},
+			{
+				x: -7.185805182762855,
+				y: 0.9345264320602453,
+				z: 10.27513816669024
+			},
+			{
+				x: -9.474990852310409,
+				y: 7.363024188632291,
+				z: -0.9139343431228681
+			}
+		],
+		ring_6: [
+			{
+				x: 6.075941620821396,
+				y: 8.697753223513702,
+				z: 14.13576723900227
+			},
+			{
+				x: -13.339523301926315,
+				y: -5.830366381029242,
+				z: -11.546219623623628
+			}
+		]
+	}
 
 	return (
 		<>
@@ -63,13 +201,23 @@ export const ContentHolder = props => {
 
 					// console.log(randomAmount)
 
-					const randomPositionArray = useMemo(() => {
-						const array = []
-						for (let i = 0; i < content.length; i++) {
-							array.push({ x: randomIntFromInterval(ringName, 'x'), y: randomIntFromInterval(ringName, 'y'), z: randomIntFromInterval(ringName, 'z') })
-						}
-						return array
-					}, [])
+					let randomPositionArray
+
+					if (fixedRingRandomPositionArray.hasOwnProperty(ringName)) {
+						// console.log('gotfrom ring name')
+						randomPositionArray = fixedRingRandomPositionArray[ringName]
+					} else {
+						randomPositionArray = useMemo(() => {
+							const array = []
+							for (let i = 0; i < content.length; i++) {
+								array.push({ x: randomIntFromInterval(ringName, 'x'), y: randomIntFromInterval(ringName, 'y'), z: randomIntFromInterval(ringName, 'z') })
+							}
+							return array
+						}, [])
+					}
+
+					// console.log(currentRingName)
+					// console.log(randomPositionArray)
 
 					return (
 						<>
@@ -175,8 +323,8 @@ function SectionTileHolder(props) {
 		// const masterGroup = useRef()
 
 		useFrame(({ camera }) => {
-			const lookAt = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z)
-			contentRef.current.lookAt(lookAt)
+			// const lookAt = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z)
+			contentRef.current.lookAt(new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z))
 		})
 
 		// const contentPosition = [0, 0, 0]
@@ -189,10 +337,8 @@ function SectionTileHolder(props) {
 		// const baseHeights = { ring_2: 0.65 * 1, ring_3: 0.65 * 2, ring_4: 0.65 * 5, ring_5: 0.65 * 7.5, ring_6: 0.65 * 10 }
 		// const shifterPlanePosition = { ring_2: 3, ring_3: 0.3 * 2, ring_4: 0.3 * 5, ring_5: 0.3 * 7.5, ring_6: 0.3 * 10 }
 		const activeScales = { ring_2: 5, ring_3: 3, ring_4: 2.5, ring_5: 1.5, ring_6: 2 }
-
 		const openingTextSizes = { ring_2: 0.075, ring_3: 0.3, ring_4: 0.7, ring_5: 0.9, ring_6: 2 }
 		// const openingTextSizes = { ring_2: 0.05, ring_3: 3, ring_4: 2.5, ring_5: 1.5, ring_6: 2 }
-
 		// const plane = new THREE.PlaneGeometry(sizes[contentSection][0] * aspectRatio, sizes[contentSection][1])
 
 		return (
@@ -257,15 +403,15 @@ function randomIntFromInterval(ringName, axis) {
 	// console.log(randomAmount)
 	// console.log(min)
 
-	const randomAmounts = { ring_2: 3.5, ring_3: 6, ring_4: 9, ring_5: 13, ring_6: 20 }
+	const randomAmounts = { ring_2: 3, ring_3: 7, ring_4: 9, ring_5: 13, ring_6: 20 }
 	const randomAmount = randomAmounts[ringName]
 	let min = -Math.abs(randomAmount)
 	let max = randomAmount
 
-	const minimumExpands = { ring_2: 0.5, ring_3: 3, ring_4: 6, ring_5: 7, ring_6: 10 }
+	const minimumExpands = { ring_2: 0.5, ring_3: 5, ring_4: 6, ring_5: 7, ring_6: 10 }
 	let minimumExpand = minimumExpands[ringName]
 
-	const yElevations = { ring_2: 0, ring_3: 1, ring_4: 3, ring_5: 4, ring_6: 6 }
+	const yElevations = { ring_2: -0.5, ring_3: 1.5, ring_4: 3, ring_5: 4, ring_6: 6 }
 	let yElevation = yElevations[ringName]
 	// console.log(minimumExpand)
 
