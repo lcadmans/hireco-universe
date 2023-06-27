@@ -20,6 +20,7 @@ function Header() {
 	const currentView = appState(state => state.currentView, shallow)
 	const setActiveVideo = appState(state => state.setActiveVideo)
 	const setIdleMessage = appState(state => state.setIdleMessage)
+	const setBrandVideo = appState(state => state.setBrandVideo)
 
 	return (
 		<>
@@ -30,6 +31,7 @@ function Header() {
 						if (currentView != 'main') return null
 						setActiveVideo('221211 - Hireco 2022 - v7.mp4')
 						setIdleMessage(true)
+						setBrandVideo(true)
 					}}
 				>
 					<HirecoWhite />
@@ -221,84 +223,84 @@ function App() {
 						)}
 					</div>
 				</div> */}
+			<div className='h-screen w-screen overflow-hidden'>
+				<Header />
+				{activeRing != 'none' && !activeVideo ? <ContentOverlay /> : <></>}
+				{idleMessage ? <IdleMessage /> : <> </>}
 
-			<Header />
-			{activeRing != 'none' && !activeVideo ? <ContentOverlay /> : <></>}
-			{idleMessage ? <IdleMessage /> : <> </>}
+				{activeVideo ? <VideoOverlay /> : <></>}
+				<WelcomeToUniverse />
 
-			{activeVideo ? <VideoOverlay /> : <></>}
-			<WelcomeToUniverse />
+				{/* <Loader /> */}
 
-			{/* <Loader /> */}
+				{/* <ConsoleLogger /> */}
+				<CustomLoader />
+				{qrPanel ? <QRPanel /> : <></>}
+				{/* <Suspense fallback={<CustomLoader />}> */}
+				{fetchData && (
+					<Canvas
+						// onCreated={state => {
+						// state.setEvents({ filter: intersections => intersections.filter(i => i.object.visible) })
+						// }}
+						dpr={dpr}
+						className='relative'
+						style={{ height: '100vh' }}
+						// shadows:
+						// gl={{ alpha: false }}
+						// camera={{ position: [0, 0.5, 0], fov: 50 }}
+						// dpr={[1, 2]}
+						// onCreated={() => {
+						// 	setActiveRing('none')
+						// }}
+					>
+						<PerformanceMonitor onIncline={() => setDpr(1.75)} onDecline={() => setDpr(1.2)}></PerformanceMonitor>
+						<AdaptiveDpr pixelated />
+						<AdaptiveEvents />
+						{/* <Perf /> */}
 
-			{/* <ConsoleLogger /> */}
-			<CustomLoader />
-			{qrPanel ? <QRPanel /> : <></>}
-			{/* <Suspense fallback={<CustomLoader />}> */}
-			{fetchData && (
-				<Canvas
-					// onCreated={state => {
-					// state.setEvents({ filter: intersections => intersections.filter(i => i.object.visible) })
-					// }}
-					dpr={dpr}
-					className='relative'
-					style={{ height: '100vh' }}
-					// shadows:
-					// gl={{ alpha: false }}
-					// camera={{ position: [0, 0.5, 0], fov: 50 }}
-					// dpr={[1, 2]}
-					// onCreated={() => {
-					// 	setActiveRing('none')
-					// }}
-				>
-					<PerformanceMonitor onIncline={() => setDpr(1.75)} onDecline={() => setDpr(1.2)}></PerformanceMonitor>
-					<AdaptiveDpr pixelated />
-					<AdaptiveEvents />
-					{/* <Perf /> */}
+						<group ref={masterGroup}>
+							<ambientLight intensity={2} />
+							<PerspectiveCamera
+								ref={cameraRef}
+								// manual={false}
+								// aspect={aspects[0] / aspects[1]}
+								aspect={window.innerWidth / window.innerHeight}
+								fov={60}
+								// position={Object.values(cameraPositions[0].position)}
+								// position={Object.values(cameraPositionsStore.focus[activeRing].position)}
+								// position={[0, 0, 0]}
+								position={[-1, -1, -1]}
+								// target={[5, 5, 5]}
+								near={0.1}
+								// far={600/}
+								makeDefault
+							/>
+							<OrbitControls
+								// camera={cameraRef.current}
+								makeDefault
+								minPolarAngle={0.5}
+								maxPolarAngle={Math.PI / 2}
+								// maxAzimuthAngle={Math.PI / 5}
+								minDistance={5}
+								maxDistance={maxDistance}
+								ref={orbitControlsRef}
+								enablePan={false}
+								// onChange={e => getCameraInformation(e)}
+								// onStart={() => console.log('start')}
+								// onEnd={e => getCameraInformation(e)}
+							/>
+							<Suspense fallback={null}>
+								{/* <Environment files='./environment/nedula.hdr' background={true} blur={0.05} rotation={5} /> */}
+								<Environment files='./environment/nedula v6.hdr' background={true} />
 
-					<group ref={masterGroup}>
-						<ambientLight intensity={2} />
-						<PerspectiveCamera
-							ref={cameraRef}
-							// manual={false}
-							// aspect={aspects[0] / aspects[1]}
-							aspect={window.innerWidth / window.innerHeight}
-							fov={60}
-							// position={Object.values(cameraPositions[0].position)}
-							// position={Object.values(cameraPositionsStore.focus[activeRing].position)}
-							// position={[0, 0, 0]}
-							position={[-1, -1, -1]}
-							// target={[5, 5, 5]}
-							near={0.1}
-							// far={600/}
-							makeDefault
-						/>
-						<OrbitControls
-							// camera={cameraRef.current}
-							makeDefault
-							minPolarAngle={0.5}
-							maxPolarAngle={Math.PI / 2}
-							// maxAzimuthAngle={Math.PI / 5}
-							minDistance={5}
-							maxDistance={maxDistance}
-							ref={orbitControlsRef}
-							enablePan={false}
-							// onChange={e => getCameraInformation(e)}
-							// onStart={() => console.log('start')}
-							// onEnd={e => getCameraInformation(e)}
-						/>
-						<Suspense fallback={null}>
-							{/* <Environment files='./environment/nedula.hdr' background={true} blur={0.05} rotation={5} /> */}
-							<Environment files='./environment/nedula v6.hdr' background={true} />
+								{/* <color attach='background' args={['#191920']} opacity={1} /> */}
+								{/* <fog attach='fog' args={['#000000', 200, 1500]} /> */}
+								{/* <hemisphereLight color='white' groundColor='#ff0f00' position={[-7, 25, 13]} intensity={1} /> */}
 
-							{/* <color attach='background' args={['#191920']} opacity={1} /> */}
-							{/* <fog attach='fog' args={['#000000', 200, 1500]} /> */}
-							{/* <hemisphereLight color='white' groundColor='#ff0f00' position={[-7, 25, 13]} intensity={1} /> */}
-
-							<Bounds damping={boundsDamping} margin={boundsMargin}>
-								<Scene cameraRef={cameraRef} orbitControlsRef={orbitControlsRef}></Scene>
-							</Bounds>
-							{/* <EffectComposer>
+								<Bounds damping={boundsDamping} margin={boundsMargin}>
+									<Scene cameraRef={cameraRef} orbitControlsRef={orbitControlsRef}></Scene>
+								</Bounds>
+								{/* <EffectComposer>
 									<Bloom
 										intensity={2}
 										luminanceThreshold={1}
@@ -310,13 +312,13 @@ function App() {
 										// mipmapBlur={false}
 									/>
 								</EffectComposer> */}
-							<Effects disableGamma>
-								{/* threshhold has to be 1, so nothing at all gets bloom by default */}
-								<unrealBloomPass threshold={1.5} strength={0.5} radius={0.3} />
-								{/* <vignetteShader /> */}
-								{/* <Vignette eskil={false} offset={0.5} darkness={1} blendFunction={'add'} /> */}
-							</Effects>
-							{/* <Stars
+								<Effects disableGamma>
+									{/* threshhold has to be 1, so nothing at all gets bloom by default */}
+									<unrealBloomPass threshold={1.5} strength={0.5} radius={0.3} />
+									{/* <vignetteShader /> */}
+									{/* <Vignette eskil={false} offset={0.5} darkness={1} blendFunction={'add'} /> */}
+								</Effects>
+								{/* <Stars
 									radius={500}
 									depth={500}
 									count={5000}
@@ -325,12 +327,13 @@ function App() {
 									// fade
 									speed={5}
 								/> */}
-						</Suspense>
-					</group>
-				</Canvas>
-			)}
-			{/* </FullScreen> */}
-			{/* </Suspense> */}
+							</Suspense>
+						</group>
+					</Canvas>
+				)}
+				{/* </FullScreen> */}
+				{/* </Suspense> */}
+			</div>
 		</>
 	)
 }

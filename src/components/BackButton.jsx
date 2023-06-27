@@ -13,6 +13,7 @@ export function BackButton() {
 	const setActiveVideo = appState(state => state.setActiveVideo, shallow)
 	const setFocusElementRef = appState(state => state.setFocusElementRef)
 	const setQrPanel = appState(state => state.setQrPanel)
+	const setBrandVideo = appState(state => state.setBrandVideo)
 	return (
 		<div
 			className='back pointer-events-auto relative z-[150] flex cursor-pointer items-center pb-6 pt-12 text-white'
@@ -27,6 +28,7 @@ export function BackButton() {
 					let [endTargetX, endTargetY, endTargetZ] = [cameraPositionsStore.focus[activeRing].target.x, cameraPositionsStore.focus[activeRing].target.y, cameraPositionsStore.focus[activeRing].target.z]
 
 					updateBounds({ position: { xPos: endPositionX, yPos: endPositionY, zPos: endPositionZ }, target: { xTar: endTargetX, yTar: endTargetY, zTar: endTargetZ } })
+					setBrandVideo(false)
 				} else {
 					setCurrentView('main')
 					setActiveRing('none')
@@ -34,6 +36,7 @@ export function BackButton() {
 					setFocusElementRef(null)
 					setActiveVideo(null)
 					setQrPanel(null)
+					setBrandVideo(false)
 				}
 			}}
 		>
@@ -70,7 +73,7 @@ export function BackButton() {
 				</g>
 			</svg>
 
-			<span className='pl-4 font-bold uppercase tracking-wider'>Back</span>
+			<span className='pl-4 pr-4 font-bold uppercase tracking-wider'>Back</span>
 		</div>
 	)
 }

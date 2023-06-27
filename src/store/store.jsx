@@ -60,7 +60,7 @@ export const appState = create(
 		textures: null,
 		sectionPositions: sectPositions,
 		idleMessage: false,
-		brandVideo: true,
+		brandVideo: false,
 
 		// Set States
 		setActiveSlide: index => set(state => ({ activeSlide: index })),

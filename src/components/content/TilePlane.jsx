@@ -203,7 +203,7 @@ function OtherImages(props) {
 	const activeTile = appState(state => state.activeTile)
 	return (
 		<>
-			<div className='flex overflow-x-scroll pt-6'>
+			<div className='pointer-events-auto flex overflow-x-scroll pt-6'>
 				{otherImagesArray.map((image, index) => {
 					return <img src={`./images/${image}`} className={`h-24  pr-1`} />
 				})}

@@ -15,6 +15,8 @@ export function VideoOverlay() {
 	const setFocusElementRef = appState(state => state.setFocusElementRef)
 	const updateCamera = appState(state => state.updateCamera, shallow)
 	const setQrPanel = appState(state => state.setQrPanel)
+	const brandVideo = appState(state => state.brandVideo, shallow)
+	const setBrandVideo = appState(state => state.setBrandVideo)
 	const playerRef = useRef()
 
 	const [error, setError] = useState('')
@@ -26,7 +28,7 @@ export function VideoOverlay() {
 	return (
 		<>
 			<div className=' absolute z-50  h-screen w-screen'>
-				<div className=' flex  h-full w-full items-center justify-start pl-24'>
+				<div className={`flex ${!brandVideo ? 'justify-start pl-24' : 'items-center justify-center'} h-full w-full items-center `}>
 					<BackButton />
 					<ReactPlayer url={'./images/' + activeVideo} playing className='relative z-20 w-[50%]' width={'50%'} height={'auto'} controls={true} loop={true} ref={playerRef} />
 					{error}
@@ -43,6 +45,7 @@ export function VideoOverlay() {
 							// setActiveRing(activeRing)
 							setFocusElementRef(null)
 							setQrPanel(null)
+							setBrandVideo(false)
 							updateCamera()
 						}}
 					></div>
