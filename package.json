@@ -10,7 +10,7 @@
 		"build": "vite build --base=./",
 		"preview": "vite preview",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d dist -t true"
+		"deploy": "npm run build && git add dist && git commit -m “dist” && git subtree push --prefix dist origin gh-pages"
 	},
 	"dependencies": {
 		"@react-spring/three": "^9.7.2",

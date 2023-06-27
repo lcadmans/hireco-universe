@@ -109,11 +109,14 @@ export function Scene(props) {
 			} else if (activeRing) {
 				console.log(activeRing)
 				switch (activeRing) {
-					case 'ring_6':
+					// case 'ring_6':
+					// 	orbitControlsRef.current.autoRotateSpeed = 2
+					// 	break
+					case 'ring_2':
 						orbitControlsRef.current.autoRotateSpeed = 2
 						break
-					case 'ring_2':
-						orbitControlsRef.current.autoRotateSpeed = -2
+					case 'ring_3':
+						orbitControlsRef.current.autoRotateSpeed = 2
 						break
 					// 		default:
 					// 			orbitControlsRef.current.autoRotateSpeed = 2

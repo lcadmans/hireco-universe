@@ -244,7 +244,7 @@ function App() {
 			<div className='h-screen w-screen overflow-hidden'>
 				<Header />
 				{activeRing != 'none' && !activeVideo ? <ContentOverlay /> : <></>}
-				{idleMessage ? <IdleMessage /> : <> </>}
+				{/* {idleMessage ? <IdleMessage /> : <> </>} */}
 
 				{activeVideo ? <VideoOverlay /> : <></>}
 				<WelcomeToUniverse />
