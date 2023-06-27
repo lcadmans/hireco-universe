@@ -8,7 +8,7 @@ import { UnrealBloomPass } from 'three-stdlib'
 import { shallow } from 'zustand/shallow'
 import { Scene } from './Scene'
 import { CustomLoader, QRPanel, BackButton, VideoOverlay } from './components'
-import { cameraPositionsStore } from './data'
+import { cameraPositionsStore, content } from './data'
 import { appState } from './store'
 
 import ReactPlayer from 'react-player'
@@ -119,12 +119,12 @@ function App() {
 		}
 	}, [progress])
 
-	const { isLoading, error, data } = useQuery({
-		queryKey: ['repoData'],
-		queryFn: () => fetch('https://cdn.contentful.com/spaces/ndcfmypd0yep/environments/master/entries?access_token=YZXIc9fW0cmy7ymmmZGQ6k8W2vO76zG3XIvsoccZLE8').then(res => res.json())
-	})
+	// const { isLoading, error, data } = useQuery({
+	// 	queryKey: ['repoData'],
+	// 	queryFn: () => fetch('https://cdn.contentful.com/spaces/ndcfmypd0yep/environments/master/entries?access_token=YZXIc9fW0cmy7ymmmZGQ6k8W2vO76zG3XIvsoccZLE8').then(res => res.json())
+	// })
 
-	// const data = content
+	const data = content
 
 	useEffect(() => {
 		if (!data) return
@@ -253,7 +253,7 @@ function App() {
 						// 	setActiveRing('none')
 						// }}
 					>
-						<PerformanceMonitor onIncline={() => setDpr(1.75)} onDecline={() => setDpr(1.2)}></PerformanceMonitor>
+						{/* <PerformanceMonitor onIncline={() => setDpr(1.75)} onDecline={() => setDpr(1.2)}></PerformanceMonitor> */}
 						<AdaptiveDpr pixelated />
 						<AdaptiveEvents />
 						{/* <Perf /> */}
@@ -411,7 +411,7 @@ function ContentOverlay(props) {
 				</div>
 				{currentView == 'page' ? (
 					<>
-						<div className='testimonial font-body text-xl'>
+						<div className='testimonial  text-xl'>
 							{activeRing == 'ring_2' && activeTile ? (
 								<>
 									{testimonial ? <p class={'text-right text-orange-500'}>"{testimonial}"</p> : <> </>}
@@ -429,7 +429,7 @@ function ContentOverlay(props) {
 													setQrPanel('https://api.whatsapp.com/send/?phone=+44' + whatsapp.substring(1))
 												}}
 											>
-												<p class={' pr-4 text-right font-body font-bold text-green-500'}>Whatsapp</p>
+												<p class={' pr-4 text-right  font-bold text-white'}>Whatsapp</p>
 												<div className='flex h-[40px] w-[40px] rounded-full bg-white p-2'>
 													<svg xmlns='http://www.w3.org/2000/svg' version='1.1' id='Icons' viewBox='0 0 32 32' width={'30px'}>
 														<path fill='#25D366' d='M17,0C8.7,0,2,6.7,2,15c0,3.4,1.1,6.6,3.2,9.2l-2.1,6.4c-0.1,0.4,0,0.8,0.3,1.1C3.5,31.9,3.8,32,4,32  c0.1,0,0.3,0,0.4-0.1l6.9-3.1C13.1,29.6,15,30,17,30c8.3,0,15-6.7,15-15S25.3,0,17,0z' />
@@ -450,7 +450,7 @@ function ContentOverlay(props) {
 													setQrPanel(linkedIn)
 												}}
 											>
-												<p class={' pr-4 text-right font-body font-bold text-blue-500'}>LinkedIn</p>
+												<p class={' pr-4 text-right  font-bold text-white'}>LinkedIn</p>
 												<div className='flex h-[40px] w-[40px] rounded-full bg-white p-2'>
 													<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' data-supported-dps='24x24' fill='#2B55B7' class='mercado-match' focusable='false' width={'30px'}>
 														<path d='M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z'></path>
