@@ -280,12 +280,12 @@ function randomIntFromInterval(ringName, axis) {
 	// console.log(randomAmount)
 	// console.log(min)
 
-	const randomAmounts = { ring_2: 2, ring_3: 4, ring_4: 10, ring_5: 13, ring_6: 25 }
+	const randomAmounts = { ring_2: 2, ring_3: 4, ring_4: 8, ring_5: 13, ring_6: 25 }
 	const randomAmount = randomAmounts[ringName]
 	let min = -Math.abs(randomAmount)
 	let max = randomAmount
 
-	const minimumExpands = { ring_2: 1, ring_3: 5, ring_4: 7, ring_5: 7, ring_6: 12.5 }
+	const minimumExpands = { ring_2: 1, ring_3: 3, ring_4: 6, ring_5: 7, ring_6: 12.5 }
 	let minimumExpand = minimumExpands[ringName]
 
 	const yElevations = { ring_2: 1, ring_3: 2, ring_4: 3, ring_5: 4, ring_6: 12 }

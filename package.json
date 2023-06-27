@@ -3,8 +3,8 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
-	"homepage": "https://lcadmans.github.io/3d-environment/",
-	"base": "/3d-environment/",
+	"homepage": "https://lcadmans.github.io/hireco-universe/",
+	"base": "/hireco-universe/",
 	"scripts": {
 		"dev": "vite --host",
 		"build": "vite build --base=./",

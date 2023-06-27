@@ -4,6 +4,6 @@ import glslify from 'rollup-plugin-glslify'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	base: '/3d-environment/',
+	base: '/hireco-universe/',
 	plugins: [react(), glslify()]
 })
