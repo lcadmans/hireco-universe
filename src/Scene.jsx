@@ -91,6 +91,11 @@ export function Scene(props) {
 
 			camera.updateProjectionMatrix()
 		}
+
+		if (orbitControlsRef) {
+			orbitControlsRef.current.autoRotate = true
+			console.log(orbitControlsRef)
+		}
 	})
 
 	useEffect(() => {

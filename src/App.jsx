@@ -1,5 +1,5 @@
 import { AdaptiveDpr, AdaptiveEvents, Bounds, Effects, Environment, OrbitControls, PerformanceMonitor, PerspectiveCamera, useProgress } from '@react-three/drei'
-import { Canvas, extend, useLoader } from '@react-three/fiber'
+import { Canvas, extend, useLoader, useFrame } from '@react-three/fiber'
 import { useQuery } from '@tanstack/react-query'
 import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { useFullScreenHandle } from 'react-full-screen'
@@ -109,18 +109,9 @@ function App() {
 
 	const { progress } = useProgress()
 
-	// const { intensity, radius, boundsMargin } = useControls({
-	// intensity: { value: 0.69, min: 0, max: 1.5, step: 0.01 },
-	// radius: { value: 1, min: 0, max: 1, step: 0.01 }
-	// cameraFov: { value: 35, min: 0, max: 200, step: 0.01 }
-	// boundsMargin: { value: 5, min: 0, max: 100, step: 0.01 }
-	// })
-
 	useEffect(() => {
 		if (progress == 100) {
 			setTimeout(() => {
-				// console.log('unmount')
-				// setStarted(true)
 				setLoaded(true)
 			}, 3000)
 		}
@@ -142,12 +133,9 @@ function App() {
 	useEffect(() => {
 		let data = fetchData
 		if (!data || data.length < 1) return
-		// console.log('fetchData')
-		// console.log(fetchData)
 	}, [fetchData])
 
 	const sectionTextures = useMemo(() => getTextures({ fetchData }), [fetchData])
-	// const sectionTextures = useMemo(() => getTextures({ fetchData }), [fetchData])
 
 	useEffect(() => {
 		if (!sectionTextures) return
@@ -156,13 +144,9 @@ function App() {
 	}, [sectionTextures])
 
 	function getTextures(props) {
-		// console.log(props)
-
 		const { fetchData } = props
 		const data = fetchData
 		if (!data) return null
-		// console.log('data')
-		// console.log(data)
 
 		let imageTextures = []
 		let finalImageUrls = []
@@ -194,10 +178,7 @@ function App() {
 			finalImageUrls.push(adjustedPath)
 		})
 
-		// console.log('finalImageUrls')
-		// console.log(finalImageUrls)
 		const loadedTextures = ([...finalImageUrls] = useLoader(THREE.TextureLoader, [...finalImageUrls]))
-		// console.log(loadedTextures)
 
 		return loadedTextures
 	}
@@ -215,34 +196,9 @@ function App() {
 		console.log(cameraInformation)
 	}
 
-	// const [showPlayButton, setShowPlayButton] = useState(false)
-
-	// useEffect(() => {
-	// 	console.log('change active video')
-	// 	// setShowPlayButton(false)
-	// 	if (!activeTile && showPlayButton) {
-	// 		setShowPlayButton(false)
-	// 	} else if (activeTile && fetchData.filter(item => item.id == activeTile)[0].video) {
-	// 		console.log('show play button')
-	// 		setTimeout(() => {
-	// 			console.log('async')
-	// 			setShowPlayButton(true)
-	// 		}, 1250)
-	// 	}
-	// }, [activeTile])
-
 	const [fullScreen, setFullScreen] = useState(false)
 	const handle = useFullScreenHandle()
 	const [dpr, setDpr] = useState(1.5)
-
-	// useEffect(() => {
-	// 	if (fullScreen) {
-	// 		console.log('enter')
-	// 		handle.enter()
-	// 	} else {
-	// 		handle.exit()
-	// 	}
-	// }, [fullScreen])
 
 	return (
 		<>

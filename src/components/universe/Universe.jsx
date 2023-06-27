@@ -203,7 +203,7 @@ function SectionCopy(props) {
 						color={0xffffff}
 						maxWidth={[50, 50, 25, 15, 4, 4][index]}
 					>
-						{description}
+						{/* {description} */}
 					</Text>
 				</group>
 			</animated.mesh>
