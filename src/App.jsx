@@ -194,10 +194,10 @@ function App() {
 	const [timeoutAmount, setTimeoutAmount] = useState(10_000)
 
 	useEffect(() => {
-		if (activeVideo) return setTimeoutAmount(50_000)
-		if (activeTile) return setTimeoutAmount(40_000)
-		if (currentView == 'page') return setTimeoutAmount(30_000)
-		if (currentView == 'main') return setTimeoutAmount(15_000)
+		if (activeVideo) return setTimeoutAmount(200_000)
+		if (activeTile) return setTimeoutAmount(100_000)
+		if (currentView == 'page') return setTimeoutAmount(60_000)
+		if (currentView == 'main') return setTimeoutAmount(20_000)
 	}, [currentView, activeVideo, activeTile])
 
 	const { getRemainingTime } = useIdleTimer({
