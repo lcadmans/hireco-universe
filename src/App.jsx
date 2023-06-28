@@ -194,7 +194,7 @@ function App() {
 	const [timeoutAmount, setTimeoutAmount] = useState(10_000)
 
 	useEffect(() => {
-		if (activeVideo) return setTimeoutAmount(200_000)
+		if (activeVideo) return setTimeoutAmount(400_000)
 		if (activeTile) return setTimeoutAmount(100_000)
 		if (currentView == 'page') return setTimeoutAmount(60_000)
 		if (currentView == 'main') return setTimeoutAmount(20_000)
