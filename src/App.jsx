@@ -28,7 +28,7 @@ function Header() {
 					className='logo pointer-events-auto flex  items-center'
 					onClick={() => {
 						if (currentView != 'main') return null
-						setActiveVideo('221211 - Hireco 2022 - v7.mp4')
+						setActiveVideo('Hireco - Brand Film - Online Edit (Master) (H.264).mp4')
 						setIdleMessage(true)
 						setBrandVideo(true)
 					}}

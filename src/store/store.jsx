@@ -58,7 +58,7 @@ export const appState = create(
 		sectionPositions: sectPositions,
 		idleMessage: false,
 		brandVideo: false,
-		flyThrough: true,
+		flyThrough: false,
 
 		// Set States
 		setActiveSlide: index => set(state => ({ activeSlide: index })),
