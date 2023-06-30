@@ -252,7 +252,7 @@ function App() {
 				{/* <ConsoleLogger /> */}
 				<CustomLoader />
 				{qrPanel ? <QRPanel /> : <></>}
-				{/* <Suspense fallback={<CustomLoader />}> */}
+
 				{fetchData && (
 					<Canvas
 						// onCreated={state => {
