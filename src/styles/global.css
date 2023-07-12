@@ -50,3 +50,10 @@ body {
 		font-size: 10px;
 	}
 }
+
+@media only screen and (max-width: 775px) {
+	html,
+	body {
+		font-size: 7.5px;
+	}
+}

@@ -13,6 +13,8 @@ import { appState } from './store'
 import { Perf } from 'r3f-perf'
 import { processData } from './functions'
 
+import { useQuery } from '@tanstack/react-query'
+
 extend({ UnrealBloomPass })
 
 function Header() {
@@ -122,12 +124,12 @@ function App() {
 		}
 	}, [progress])
 
-	// const { isLoading, error, data } = useQuery({
-	// 	queryKey: ['repoData'],
-	// 	queryFn: () => fetch('https://cdn.contentful.com/spaces/ndcfmypd0yep/environments/master/entries?access_token=YZXIc9fW0cmy7ymmmZGQ6k8W2vO76zG3XIvsoccZLE8').then(res => res.json())
-	// })
+	const { isLoading, error, data } = useQuery({
+		queryKey: ['repoData'],
+		queryFn: () => fetch('https://cdn.contentful.com/spaces/ndcfmypd0yep/environments/master/entries?access_token=YZXIc9fW0cmy7ymmmZGQ6k8W2vO76zG3XIvsoccZLE8').then(res => res.json())
+	})
 
-	const data = content
+	// const data = content
 
 	useEffect(() => {
 		if (!data) return
@@ -160,7 +162,7 @@ function App() {
 		console.log(cameraInformation)
 	}
 
-	const [dpr, setDpr] = useState(1.5)
+	// const [dpr, setDpr] = useState(1.5)
 
 	const [state, setState] = useState('Active')
 	const [count, setCount] = useState(0)
@@ -258,7 +260,7 @@ function App() {
 						// onCreated={state => {
 						// state.setEvents({ filter: intersections => intersections.filter(i => i.object.visible) })
 						// }}
-						dpr={dpr}
+						// dpr={dpr}
 						className='relative'
 						style={{ height: '100vh' }}
 						// shadows:
@@ -302,7 +304,7 @@ function App() {
 									maxDistance={365}
 									ref={orbitControlsRef}
 									enablePan={false}
-									autoRotate={flyThrough}
+									// autoRotate={flyThrough}
 									// onChange={e => getCameraInformation(e)}
 									// onStart={() => console.log('start')}
 									// onEnd={e => getCameraInformation(e)}
@@ -331,7 +333,7 @@ function App() {
 								</EffectComposer> */}
 								<Effects disableGamma>
 									{/* threshhold has to be 1, so nothing at all gets bloom by default */}
-									<unrealBloomPass threshold={1.4} strength={0.4} radius={0.25} />
+									<unrealBloomPass threshold={1.25} strength={0.5} radius={0.5} />
 									{/* <vignetteShader /> */}
 									{/* <Vignette eskil={false} offset={0.5} darkness={1} blendFunction={'add'} /> */}
 								</Effects>

@@ -74,55 +74,54 @@ export function Scene(props) {
 		// 	if (orbitControlsRef.current.maxDistance < 150) orbitControlsRef.current.maxDistance = 150
 		// 	orbitControlsRef.current.maxDistance + 10
 		// }
-		if (currentView == 'page' && orbitControlsRef.current.maxDistance > 80) {
-			orbitControlsRef.current.maxDistance = orbitControlsRef.current.maxDistance - 5
-			// console.log(orbitControlsRef.current.maxDistance)
-			// setMaxDistance(maxDistance - 5)
-		} else if (currentView != 'page') {
-			if (orbitControlsRef.current.maxDistance < 200) orbitControlsRef.current.maxDistance = 200
-			if (orbitControlsRef.current.maxDistance < 365) orbitControlsRef.current.maxDistance = orbitControlsRef.current.maxDistance + 10
-			// console.log(orbitControlsRef.current.maxDistance)
-			// if (maxDistance < 200) setMaxDistance(150)
-			// setMaxDistance(maxDistance + 50)
-		}
+		// if (currentView == 'page' && orbitControlsRef.current.maxDistance > 80) {
+		// orbitControlsRef.current.maxDistance = orbitControlsRef.current.maxDistance - 5
+		// console.log(orbitControlsRef.current.maxDistance)
+		// setMaxDistance(maxDistance - 5)
+		// } else if (currentView != 'page' && orbitControlsRef.current.maxDistance < 365) {
+		// if (orbitControlsRef.current.maxDistance < 200) orbitControlsRef.current.maxDistance = 200
+		// if (orbitControlsRef.current.maxDistance < 365) orbitControlsRef.current.maxDistance = orbitControlsRef.current.maxDistance + 10
+		// console.log(orbitControlsRef.current.maxDistance)
+		// if (maxDistance < 200) setMaxDistance(150)
+		// setMaxDistance(maxDistance + 50)
+		// }
 		// if (!activeTile) {
 		// 	floatGroup.current.rotation.set(Math.cos(t / 8) / 8, Math.sin(t / 8) / 16, -0.2 - Math.sin(t / 3) / 30)
 		// 	floatGroup.current.rotation.z -= 0.02
 		// }
 
 		if (currentView == 'page' && camera.fov < 110) {
-			camera.fov += 1.75
+			camera.fov += 2
 			camera.updateProjectionMatrix()
 		} else if (currentView == 'main' && camera.fov > 60) {
 			// console.log('return to base')
-			camera.fov = camera.fov -= 3
+			camera.fov = camera.fov -= 2
 			if (camera.fov < 60) camera.fov = 60
-
 			camera.updateProjectionMatrix()
 		}
 
-		if (orbitControlsRef && flyThrough) {
-			orbitControlsRef.current.autoRotate = true
+		// if (orbitControlsRef && flyThrough) {
+		// 	orbitControlsRef.current.autoRotate = true
 
-			if (currentView == 'main') {
-				orbitControlsRef.current.autoRotateSpeed = -2
-			} else if (activeRing) {
-				console.log(activeRing)
-				switch (activeRing) {
-					// case 'ring_6':
-					// 	orbitControlsRef.current.autoRotateSpeed = 2
-					// 	break
-					case 'ring_2':
-						orbitControlsRef.current.autoRotateSpeed = 2
-						break
-					case 'ring_3':
-						orbitControlsRef.current.autoRotateSpeed = 2
-						break
-					// 		default:
-					// 			orbitControlsRef.current.autoRotateSpeed = 2
-				}
-			}
-		}
+		// 	if (currentView == 'main') {
+		// 		orbitControlsRef.current.autoRotateSpeed = -2
+		// 	} else if (activeRing) {
+		// 		console.log(activeRing)
+		// 		switch (activeRing) {
+		// 			// case 'ring_6':
+		// 			// 	orbitControlsRef.current.autoRotateSpeed = 2
+		// 			// 	break
+		// 			case 'ring_2':
+		// 				orbitControlsRef.current.autoRotateSpeed = 2
+		// 				break
+		// 			case 'ring_3':
+		// 				orbitControlsRef.current.autoRotateSpeed = 2
+		// 				break
+		// 			// 		default:
+		// 			// 			orbitControlsRef.current.autoRotateSpeed = 2
+		// 		}
+		// 	}
+		// }
 	})
 
 	useEffect(() => {
